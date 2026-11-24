@@ -4,9 +4,9 @@
 
 | Check | Outcome | Evidence scope |
 |---|---|---|
-| P11 syntax | 6/6 passed | Recorded offline checks of the reliability changes |
-| P11 mocked behavior | 31/31 passed | Historical offline patch acceptance |
-| P11 source contracts | 9/9 passed | Historical offline patch acceptance |
+| Reliability patch syntax | 6/6 passed | Recorded offline checks of the reliability changes |
+| Reliability patch mocked behavior | 31/31 passed | Historical offline patch acceptance |
+| Reliability patch source contracts | 9/9 passed | Historical offline patch acceptance |
 | Conversational understanding | 17/17 passed | Recorded checks of conversational understanding |
 | Local audit #58 | Two findings verified fixed; next finding progressed | Recorded local audit |
 
@@ -38,3 +38,6 @@ flowchart LR
 Passing a syntax check means the code can be parsed. Mocked checks test behavior using controlled substitutes for dependencies. Source-contract checks examine expected code relationships. None of these alone proves that the whole application works with real services. The project remains in active development. The private implementation and credentials are not published.
 
 [Engineering investigations](ENGINEERING-CASE-STUDIES.md) · [Architecture](ARCHITECTURE.md)
+
+---
+[Portfolio home](README.md) · [Product](PRODUCT-CASE-STUDY.md) · [Architecture](ARCHITECTURE.md) · [AI](AI-INTELLIGENCE.md) · [Engineering](ENGINEERING-CASE-STUDIES.md) · [Validation](VALIDATION-AND-LIMITATIONS.md) · [LinkedIn](https://www.linkedin.com/in/aravindmugappagari)
