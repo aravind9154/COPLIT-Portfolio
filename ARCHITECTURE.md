@@ -81,7 +81,7 @@ Conceptual relationships, not an exact schema export. Links, intelligence snapsh
 ## From a website URL to a report
 
 1. The frontend collects the URL and sends a request to the backend.
-2. The backend checks the user's identity and the URL before starting website inspection.
+2. The design requires the backend to check identity and URL safety before starting website inspection.
 3. The crawler discovers links, fetches pages and collects HTML and response information. Beautiful Soup helps inspect HTML; Playwright can inspect content after JavaScript runs.
 4. SEO checks examine the observations and create findings linked to affected pages.
 5. The application organizes findings and saves evidence in PostgreSQL.
@@ -89,7 +89,7 @@ Conceptual relationships, not an exact schema export. Links, intelligence snapsh
 
 The documented frontend uses GET /audit-progress/{progressId} for polling and POST /audits/{id}/initial-task-response for an initial task explanation. These are recorded source interfaces, not newly tested requests.
 
-## Following a request when something goes wrong
+## Troubleshooting system boundaries
 
 | Observation | Boundary to investigate |
 |---|---|
@@ -126,25 +126,15 @@ These explain the design and historical source findings. Full current dependency
 
 The crawler discovers pages and links, normalizes URLs, fetches content and parses technical signals. Browser rendering complements HTTP inspection when JavaScript changes the visible document. Analysis components turn observations into findings, evidence and prioritized work. Conversational components support contextual interaction.
 
-## Why these choices?
-
-| Choice | Alternative | Rationale |
-|---|---|---|
-| Next.js / React | Vue or Angular | Component-oriented interactive workspace |
-| FastAPI | Flask, Django or Express | Fits Python crawling and intelligence services |
-| PostgreSQL | Document database | Relational ownership, findings and history |
-| HTTP plus browser inspection | HTTP only | Browser observation can reveal rendered content; costs more resources |
-| Deterministic verification | Model-only judgment | Recheck observable conditions independently of generated text |
-
 ## Architectural judgment
 
-| Design decision | Benefit | Cost or constraint |
-|---|---|---|
-| Separate frontend and Python API | Clear interface between interaction and inspection logic | Requires compatible API contracts and coordinated error handling |
-| Relational evidence storage | Trace findings to pages, audits and verification events | Requires schema management and transaction discipline |
-| Combine HTTP and browser inspection | Observe both response markup and rendered content | Browser execution consumes additional time and resources |
-| Separate explanation from verification | Prevent generated text from becoming proof of a correction | Requires dedicated checks for supported issue types |
-| Bound request and database waiting | Avoid indefinite waiting and communicate failures | Time budgets must propagate across service boundaries |
+| Design decision | Alternative | Benefit | Cost or constraint |
+|---|---|---|---|
+| Next.js / React and FastAPI | Vue, Angular, Flask, Django or Express | Clear interface between interaction and inspection logic | Requires compatible API contracts and coordinated error handling |
+| PostgreSQL relational storage | Document database | Trace findings to pages, audits and verification events | Requires schema management and transaction discipline |
+| Combine HTTP and browser inspection | HTTP only | Observe both response markup and rendered content | Browser execution consumes additional time and resources |
+| Separate explanation from verification | Model-only judgment | Prevent generated text from becoming proof of a correction | Requires dedicated checks for supported issue types |
+| Bound request and database waiting | API-only timeout | Avoid indefinite waiting and communicate failures | Time budgets must propagate across service boundaries |
 
 My architectural work centers on defining these responsibilities and tracing how requests, data and errors cross them. The trade-offs explain the design rationale; they do not imply that every alternative was benchmarked.
 
