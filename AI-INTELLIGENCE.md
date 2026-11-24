@@ -45,7 +45,7 @@ The following is an illustrative contract, not a captured model request or respo
 | Suggested correction | Explanation generated from available context |
 | Verification result | Independent reinspection, not the language model |
 
-## Why use retrieval instead of asking the model directly?
+## Retrieval strategy
 
 Structured retrieval is appropriate for exact identifiers and relational evidence. Semantic retrieval can help with natural-language relevance but needs ownership filters and relevance evaluation. A separate vector database is not assumed. Gemini can be replaced in principle through an adapter, but provider portability requires testing.
 
@@ -69,7 +69,7 @@ The design prioritizes answer reliability over unrestricted conversational outpu
 - Conversation history does not override newer authoritative evidence.
 - AI explanations never substitute for deterministic verification.
 
-Historical conversational understanding checks reported 17/17 passing. This is component-level evidence, not an accuracy benchmark or proof of end-to-end RAG behavior.
+Recorded conversational understanding checks passed 17/17. This is component-level evidence, not an accuracy benchmark or proof of end-to-end RAG behavior.
 
 [Architecture](ARCHITECTURE.md) · [Validation](VALIDATION-AND-LIMITATIONS.md)
 
