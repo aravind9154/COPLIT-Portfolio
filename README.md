@@ -20,6 +20,10 @@ COPLIT brings technical website inspection and guided problem resolution into on
 | Verify | Know whether the change worked | Reinspect supported conditions and record the result |
 | Return | Continue without starting over | Retain audit history and restore context |
 
+## Reading the portfolio
+
+Start with product research for the problem and requirements, then follow the architecture and AI design to understand how the solution is organized. The engineering investigations and validation records distinguish documented outcomes from design requirements. Each document can also be read independently.
+
 ## Explore the product and its engineering
 
 | Area | Questions answered |
