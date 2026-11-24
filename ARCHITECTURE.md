@@ -136,6 +136,18 @@ The crawler discovers pages and links, normalizes URLs, fetches content and pars
 | HTTP plus browser inspection | HTTP only | Browser observation can reveal rendered content; costs more resources |
 | Deterministic verification | Model-only judgment | Recheck observable conditions independently of generated text |
 
+## Architectural judgment
+
+| Design decision | Benefit | Cost or constraint |
+|---|---|---|
+| Separate frontend and Python API | Clear interface between interaction and inspection logic | Requires compatible API contracts and coordinated error handling |
+| Relational evidence storage | Trace findings to pages, audits and verification events | Requires schema management and transaction discipline |
+| Combine HTTP and browser inspection | Observe both response markup and rendered content | Browser execution consumes additional time and resources |
+| Separate explanation from verification | Prevent generated text from becoming proof of a correction | Requires dedicated checks for supported issue types |
+| Bound request and database waiting | Avoid indefinite waiting and communicate failures | Time budgets must propagate across service boundaries |
+
+My architectural work centers on defining these responsibilities and tracing how requests, data and errors cross them. The trade-offs explain the design rationale; they do not imply that every alternative was benchmarked.
+
 ## Protecting accounts and keeping the application running
 
 Account authentication, session handling and resource ownership define the intended multi-user boundary. Historical source reviews identify URL validation, secure redirects, network checks and browser interception as SSRF defenses. Comprehensive security acceptance remains necessary.
