@@ -69,7 +69,7 @@ The design prioritizes answer reliability over unrestricted conversational outpu
 - Conversation history does not override newer authoritative evidence.
 - AI explanations never substitute for deterministic verification.
 
-The recorded conversational understanding component checks evaluated interpretation of user questions and all passed. Individual case descriptions are not available in the retrieved records. This does not establish model accuracy or end-to-end RAG behavior. [See the validation scope](VALIDATION-AND-LIMITATIONS.md).
+The recorded conversational understanding component checks evaluated interpretation of user questions and all passed. The checks concern question interpretation, rather than model accuracy. [See the validation scope](VALIDATION-AND-LIMITATIONS.md).
 
 [Architecture](ARCHITECTURE.md) · [Validation](VALIDATION-AND-LIMITATIONS.md)
 
