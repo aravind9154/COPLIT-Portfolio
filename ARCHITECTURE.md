@@ -1,6 +1,6 @@
 # System architecture
 
-COPLIT separates presentation, orchestration, website observation, analysis, explanation and verification. The following is a logical architecture, not a production deployment diagram.
+When someone connects a website, several parts of COPLIT work together. The interface collects the request, the backend runs the checks, the database saves the results, and the AI helps explain them. This diagram shows how the parts are designed to connect, not a live deployment.
 
 ```mermaid
 flowchart TD
@@ -20,7 +20,7 @@ flowchart TD
  DB --> API
 ```
 
-## Technology responsibilities
+## What each technology does
 
 | Technology | What it is and why it fits COPLIT |
 |---|---|
@@ -46,7 +46,7 @@ flowchart TD
 | Python-dotenv | Loads environment-based configuration in development; not a secret vault |
 | SSE | Server-sent events for progressive responses; live lifecycle acceptance pending |
 
-## Communication in practice
+## How the frontend asks for saved results
 
 ```mermaid
 sequenceDiagram
@@ -62,7 +62,7 @@ sequenceDiagram
 
 The endpoint is documented in the frontend records. The ownership check represents the intended security contract, not a completed cross-account acceptance test.
 
-## Data model
+## How website information is stored
 
 ```mermaid
 erDiagram
@@ -78,6 +78,39 @@ erDiagram
 
 Conceptual relationships, not an exact schema export. Links, intelligence snapshots and conversation records also support inspection and continuity. Transactions should preserve consistent finding and verification state.
 
+## From a website URL to a report
+
+1. The frontend collects the URL and sends a request to the backend.
+2. The backend checks the user's identity and the URL before starting website inspection.
+3. The crawler discovers links, fetches pages and collects HTML and response information. Beautiful Soup helps inspect HTML; Playwright can inspect content after JavaScript runs.
+4. SEO checks examine the observations and create findings linked to affected pages.
+5. The application organizes findings and saves evidence in PostgreSQL.
+6. The frontend requests progress and displays results. AI can help explain the saved evidence, and supported checks can run again after a fix.
+
+The documented frontend uses GET /audit-progress/{progressId} for polling and POST /audits/{id}/initial-task-response for an initial task explanation. These are recorded source interfaces, not newly tested requests.
+
+## How the smaller parts fit together
+
+| Concept | Why it matters |
+|---|---|
+| HTML and DOM | HTML is the page markup; the DOM is the browser's representation of the document, which can change after scripts run. |
+| URL normalization | Avoid treating equivalent URL forms as unrelated pages, without merging genuinely different resources. |
+| Redirects | Follow a changed address only after checking that the destination is safe. |
+| Crawl limits | Bound page count, time and resource use; a crawl is not necessarily the entire website. |
+| Primary and foreign keys | Identify records and connect an audit to its pages, findings and evidence. |
+| Transactions | Save related changes together or roll them back if an operation fails. |
+| Sessions and authorization | Identify the signed-in user and check that they own the requested website or audit. |
+| SSRF | Prevent user-supplied URLs from making the server access private or internal network resources. |
+| CORS | Controls which browser origins may access the API; it does not replace authentication. |
+| Migrations | Track database schema changes so existing records can be preserved. |
+| Health checks | Help distinguish a running server from one whose required dependencies are ready. |
+| Timeouts | Limit waiting for HTTP requests, database connections and transactions. |
+| Polling and SSE | Polling repeatedly asks for progress; SSE lets a server send events over an open HTTP connection. |
+| Environment configuration | Keep deployment-specific settings outside source code; protect secrets separately. |
+| Virtual environment | Keep Python project dependencies together without changing the system-wide installation. |
+
+These explain the design and historical source findings. Full current dependency usage and security behavior still need verification.
+
 ## Website inspection and intelligence
 
 The crawler discovers pages and links, normalizes URLs, fetches content and parses technical signals. Browser rendering complements HTTP inspection when JavaScript changes the visible document. Analysis components (historically F-series and L-series) turn observations into findings, evidence and prioritized work. Conversational components (T-series) support contextual interaction.
@@ -92,7 +125,7 @@ The crawler discovers pages and links, normalizes URLs, fetches content and pars
 | HTTP plus browser inspection | HTTP only | Browser observation can reveal rendered content; costs more resources |
 | Deterministic verification | Model-only judgment | Recheck observable conditions independently of generated text |
 
-## Security and operations
+## Protecting accounts and keeping the application running
 
 Account authentication, session handling and resource ownership define the intended multi-user boundary. Historical source reviews identify URL validation, secure redirects, network checks and browser interception as SSRF defenses. Comprehensive security acceptance remains necessary.
 
