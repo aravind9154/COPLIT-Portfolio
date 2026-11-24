@@ -1,49 +1,60 @@
-# Engineering case studies
+# Engineering investigations
 
-These examples are based on recorded COPLIT development and validation history. They distinguish implemented source changes and offline checks from live acceptance.
+These investigations describe recorded development work, not production incidents.
 
-## 1. Request deadlines and API error mapping
+## 1. Request reliability
 
-**Problem:** A time budget is only useful if it is respected through application services, database access, and persistence. Otherwise, an operation can outlast the API request or return an unclear error.
+**Problem:** An API deadline can be ineffective when downstream services or database operations ignore the remaining time budget.
 
-**Investigation and decision:** Review the request path across the API boundary, intelligence services, database connections, and persistence. Propagate deadline constraints rather than treating each layer independently.
+```mermaid
+flowchart LR
+ A[API deadline] --> B[Service budget]
+ B --> C[DB connection timeout]
+ C --> D[Transaction timeout]
+ D --> E[Persistence]
+ B --> F[Deadline failure]
+ F --> G[HTTP 504]
+```
 
-**Implementation work recorded:** Deadline propagation, database connection timeout handling, transaction timeouts, persistence forwarding, and mapping deadline failures to HTTP 504.
+I traced the request path and coordinated changes to deadline propagation, connection and transaction limits, persistence forwarding and API error mapping. The combined P11 patch set passed 6/6 syntax, 31/31 mocked behavior and 9/9 source-contract checks. Live deadline mapping remains pending.
 
-**Evidence:** Included in the six-patch P11 offline acceptance set. Syntax, mocked behavioral, and source-contract checks passed.
+## 2. Streaming lifecycle
 
-**Limitation:** Live deadline behavior and full end-to-end runtime acceptance were still pending in the recorded handover.
+SSE allows a server to send incremental events over an HTTP connection. Completion, exceptions and client disconnects require consistent cleanup. Streaming lifecycle repairs were included in the P11 offline acceptance set; live disconnect and recovery behavior remain unverified.
 
-## 2. Streaming response lifecycle
+## 3. Deterministic verification
 
-**Problem:** Progressive responses need a clear lifecycle for completion, exceptions, and client disconnects. Without cleanup, resources or state can remain inconsistent.
+```mermaid
+flowchart TD
+ A[Stored finding] --> B[User correction]
+ B --> C[Re-observe relevant condition]
+ C --> D{Evidence sufficient?}
+ D -->|No| E[Unable to verify]
+ D -->|Yes| F{Condition resolved?}
+ F -->|Yes| G[Record verified outcome]
+ F -->|No| H[Keep work open]
+ G --> I[Next finding]
+```
 
-**Engineering approach:** Strengthen streaming lifecycle handling and the contract between backend response generation and consumers.
+Historical local audit #58 recorded two supported findings verified fixed and next-finding progression. The example demonstrates a local workflow, not universal verification coverage. Missing H1 and missing meta description are documented supported examples.
 
-**Evidence:** Streaming lifecycle repair was included in the accepted offline patch set.
+## 4. Grounded conversational intelligence
 
-**Limitation:** A passing mocked check does not establish live SSE disconnect behavior. That remains a runtime acceptance task.
+Generic answers may be plausible but unsupported. The design separates authoritative findings from model-generated explanation, retrieves website-specific context and avoids rigid keyword-driven replies. Conversational understanding recorded 17/17 local checks; integrated grounding and model behavior remain acceptance tasks.
 
-## 3. Deterministic issue verification
+## 5. Troubleshooting approach
 
-**Problem:** A suggested fix is not proof that a website issue has been resolved.
+The following is a diagnostic playbook, not a record of additional incidents.
 
-**Engineering approach:** Separate explanatory guidance from rechecking the relevant website condition. Store the verification event and continue to the next outstanding finding.
+| Symptom | Investigate | Expected handling |
+|---|---|---|
+| 401 / 403 | Session validity and resource ownership | Require authentication or deny unauthorized access |
+| 404 | Resource identity or missing route | Explain missing resource without leaking other accounts |
+| 504 | Remaining deadline, service and database timing | Return a clear timeout rather than hang |
+| Audit progress stalls | Polling, job state and backend availability | Preserve uncertainty and avoid false completion |
+| Verification fetch fails | Network response and evidence sufficiency | Report inability to verify, not a successful fix |
+| AI response lacks evidence | Retrieval scope and context | Acknowledge missing evidence |
 
-**Recorded example:** A previous local audit (#58) included two findings that were reported as verified fixed, followed by successful next-finding progression.
+My approach is to reproduce the symptom where safe, trace the affected boundary, identify the cause, review a targeted correction and validate the result. AI-assisted implementation is part of this workflow; the evidence determines whether a change is accepted.
 
-**Limitation:** This is historical local validation evidence, not a claim of general accuracy or support for every SEO issue type.
-
-## 4. Website-grounded conversational intelligence
-
-**Problem:** A generic assistant may give plausible advice that is not supported by the website's actual observations.
-
-**Design decision:** Restrict substantive answers to the connected website's collected evidence and preserve conversation context. Avoid hardcoded user phrases and forced response templates.
-
-**Work completed:** Components for conversational understanding, evidence explanation, guidance, and continuity were developed and subjected to local checks.
-
-**Limitation:** Full integrated, production-grade accuracy, runtime resilience, and model behavior have not been established.
-
-## What these examples demonstrate
-
-The engineering focus is on defining system contracts, tracing behavior across components, making targeted reliability improvements, and distinguishing **what was checked** from **what remains unproven**.
+[Architecture](ARCHITECTURE.md) · [Validation](VALIDATION-AND-LIMITATIONS.md)
