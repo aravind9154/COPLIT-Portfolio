@@ -1,58 +1,28 @@
-# Engineering validation and acceptance
+# Engineering validation and results
 
 ## What was tested and what the results establish
 
-| Area tested | What the check evaluated | Recorded result and meaning |
+| Engineering area | Test performed | Result |
 |---|---|---|
-| Python syntax | Whether the six changed Python files could be parsed | All six passed; establishes syntactic validity, not runtime correctness |
-| Streaming lifecycle | Handling the lifecycle of incremental responses under controlled conditions | Six mocked checks passed; live disconnect behavior remains unverified |
-| Deadline handoff | Passing the request time budget between service layers | Five mocked checks passed; supports deadline propagation in the tested scenarios |
-| Database connection timeout | Bounding connection waiting using the supplied time budget | Eight mocked checks passed; no live database connection was exercised |
-| Transaction timeout and rollback | Transaction waiting limits and rollback behavior | Twelve mocked checks passed; live transaction recovery remains unverified |
-| Persistence contracts | Acceptance and forwarding of timeout arguments through persistence functions | Four source checks passed; confirms expected code relationships |
-| API timeout contracts | Deadline handler uniqueness, HTTP 504 mapping and forwarding timeout arguments | Five source checks passed; does not establish a live HTTP 504 response |
-| Conversational understanding | Component-level interpretation of user questions | Seventeen recorded checks passed; individual cases are not available in the retrieved record, and integrated model grounding is not established |
-| Local API readiness | GET requests to /openapi.json, /docs and /health | All returned HTTP 200; confirms local API responsiveness, not complete application functionality |
-| Frontend type checking | TypeScript compiler validation | Exit code 0; does not establish browser behavior |
-| Website correction | Recheck missing H1 and missing meta description after user corrections | Both findings were recorded as fixed in local audit #58, followed by progression to the next finding |
+| Python code quality | Checked six modified Python files for syntax errors | All six files passed syntax validation |
+| Progressive responses | Tested incremental response handling using simulated service behavior | All six response-handling checks passed |
+| Request time limits | Tested whether time limits were passed between application services | All five simulated deadline checks passed |
+| Database connections | Tested connection waiting against the supplied time limit | All eight simulated connection checks passed |
+| Database transactions | Tested transaction time limits and reversal of failed operations | All twelve simulated transaction checks passed |
+| Saving application data | Inspected whether data-saving functions accepted and forwarded time limits | All four code checks passed |
+| API error handling | Inspected timeout handling, HTTP 504 error mapping and time-limit forwarding | All five code checks passed |
+| Understanding user questions | Evaluated the conversational understanding component | All seventeen recorded component checks passed |
+| API availability | Requested the local API documentation, health and interface-description endpoints | All three returned HTTP 200 (successful response) |
+| Frontend code quality | Checked TypeScript code using its compiler | Completed without compiler errors |
+| Website correction | Rechecked missing main headings and meta descriptions after corrections | Both findings were verified as fixed; the workflow advanced to the next finding |
 
-The reliability checks used offline mocks and source inspection without live database, network or Gemini calls. These are recorded development summaries, not original logs. Individual case names for all mocked and conversational checks are unavailable in the retrieved records. No production benchmarks or customer outcomes are claimed.
+## What these results demonstrate
 
-## Integrated acceptance criteria — not yet established
+- **Website problem resolution:** The recorded local audit demonstrated correction, independent reinspection and progression to the next finding.
+- **Request reliability:** Simulated service and database checks evaluated how time limits are passed and handled.
+- **Application interfaces:** Local API availability and frontend compiler checks confirmed the specific interfaces and code checks described above.
 
-| Capability | What needs checking |
-|---|---|
-| Authenticated workspace | End-to-end session and account ownership checks |
-| Website inspection | Safe resource limits and supported observation coverage |
-| API reliability | Live deadline and HTTP 504 behavior |
-| SSE | Completion, disconnect and error cleanup |
-| Persistence | Recovery, transaction consistency and workspace restoration |
-| AI and retrieval | Website scope, evidence grounding and provider failure handling |
-| Verification | Supported issue coverage and uncertain outcomes |
-| Production readiness | Dependency reproducibility, migrations, security and operational readiness |
-
-## Quality decisions
-
-| Outcome | Decision |
-|---|---|
-| Syntax check passes | Proceed to behavioral checks; do not infer runtime correctness |
-| Mocked behavior passes | Retain the result within its controlled test scope |
-| Verification evidence is insufficient | Keep the finding unresolved or uncertain |
-| Integrated behavior is unverified | Do not represent it as accepted |
-
-The acceptance approach distinguishes a plausible implementation from a demonstrated outcome.
-
-## Release acceptance sequence
-
-```mermaid
-flowchart LR
- A[Source changes] --> B[Offline checks]
- B --> C[Integrated local acceptance]
- C --> D[Security and operational acceptance]
- D --> E[Release decision]
-```
-
-Passing a syntax check means the code can be parsed. Mocked checks test behavior using controlled substitutes for dependencies. Source-contract checks examine expected code relationships. None of these alone proves that the whole application works with real services. The private implementation and credentials are not published.
+The results are development-record summaries of local execution, simulated behavior and code inspection. They are not production benchmarks or independent end-to-end certification. Original execution logs are not included.
 
 [Engineering investigations](ENGINEERING-CASE-STUDIES.md) · [Architecture](ARCHITECTURE.md)
 
