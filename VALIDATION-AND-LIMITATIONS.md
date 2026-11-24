@@ -1,20 +1,20 @@
-# Validation and development status
+# What I have tested and what remains
 
 ## Recorded evidence
 
 | Check | Outcome | Evidence scope |
 |---|---|---|
-| P11 syntax | 6/6 passed | Historical offline patch acceptance |
+| P11 syntax | 6/6 passed | Recorded offline checks of the reliability changes |
 | P11 mocked behavior | 31/31 passed | Historical offline patch acceptance |
 | P11 source contracts | 9/9 passed | Historical offline patch acceptance |
-| Conversational understanding | 17/17 passed | Historical local component checks |
-| Local audit #58 | Two findings verified fixed; next finding progressed | Historical local workflow |
+| Conversational understanding | 17/17 passed | Recorded checks of conversational understanding |
+| Local audit #58 | Two findings verified fixed; next finding progressed | Recorded local audit |
 
 These are summarized development records. Original sanitized logs and independently reproducible demonstrations are not yet attached. No production benchmarks, customer outcomes or model accuracy claims are made.
 
-## What remains to be established
+## What I still need to test
 
-| Capability | Acceptance needed |
+| Capability | What needs checking |
 |---|---|
 | Authenticated workspace | End-to-end session and account ownership checks |
 | Website inspection | Safe resource limits and supported observation coverage |
@@ -25,7 +25,7 @@ These are summarized development records. Original sanitized logs and independen
 | Verification | Supported issue coverage and uncertain outcomes |
 | Production readiness | Dependency reproducibility, migrations, security and operational readiness |
 
-## Release decision
+## Before releasing COPLIT
 
 ```mermaid
 flowchart LR
@@ -35,6 +35,6 @@ flowchart LR
  D --> E[Release decision]
 ```
 
-Recorded checks establish progress at specific stages, not completion of every gate. The project remains in active development. The private implementation and credentials are not published.
+Passing a syntax check means the code can be parsed. Mocked checks test behavior using controlled substitutes for dependencies. Source-contract checks examine expected code relationships. None of these alone proves that the whole application works with real services. The project remains in active development. The private implementation and credentials are not published.
 
 [Engineering investigations](ENGINEERING-CASE-STUDIES.md) · [Architecture](ARCHITECTURE.md)
