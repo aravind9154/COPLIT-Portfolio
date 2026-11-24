@@ -57,9 +57,9 @@ In local audit #58, missing H1 and missing meta description findings were record
 
 ## 4. Answering from actual website information
 
-Generic answers may be plausible but unsupported. The design separates authoritative findings from model-generated explanation, retrieves website-specific context and avoids rigid keyword-driven replies. The recorded conversational understanding component checks passed. They evaluate interpretation rather than proving end-to-end retrieval or model grounding; 
+Generic answers may be plausible but unsupported. The design separates authoritative findings from model-generated explanation, retrieves website-specific context and avoids rigid keyword-driven replies. The recorded conversational understanding component checks passed. They evaluate interpretation rather than proving end-to-end retrieval or model grounding. 
 
-## Engineering results
+## What these investigations demonstrate
 
 | Investigation | Change or decision | Recorded outcome | Test scope |
 |---|---|---|---|
@@ -69,7 +69,7 @@ Generic answers may be plausible but unsupported. The design separates authorita
 
 These summaries are based on recorded development work. They are not substitutes for original logs.
 
-## 5. Troubleshooting guide
+## Troubleshooting guide
 
 The following is a diagnostic playbook, not a record of additional incidents.
 
