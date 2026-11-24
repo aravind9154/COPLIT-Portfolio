@@ -37,6 +37,19 @@ Original research notes and customer interviews are not included in this portfol
 | Save history | Users should not start over each time | Protect account ownership and restore saved state |
 | Let users make changes | Keep control with the website owner | Do not modify websites automatically |
 
+## Business value and product direction
+
+The product focuses on the effort between identifying an issue and resolving it. For a website owner, that means less interpretation work; for a freelancer, clearer explanations to clients; for an agency, a more consistent way to track corrections across engagements. These are intended benefits, not measured savings.
+
+| Product priority | Reasoning | Trade-off |
+|---|---|---|
+| Reliable inspection and evidence | Explanations need trustworthy inputs | Coverage is bounded by supported checks and crawl limits |
+| Grouping and prioritization | Users need a manageable starting point | Grouping must retain page-level detail |
+| Guided resolution and verification | A recommendation is more useful when its outcome can be checked | Verification requires issue-specific logic |
+| History and contextual assistance | Returning users need continuity | Stored context adds privacy and consistency requirements |
+
+The strategic focus is depth of problem resolution rather than matching every feature of a general-purpose SEO suite. This is a product rationale, not a claim of market validation.
+
 ## From login to logout
 
 ```mermaid
@@ -56,15 +69,22 @@ flowchart TD
  K --> L[Sign out]
 ```
 
-This is the planned full experience. Saved-workspace restoration and the complete authenticated workflow still need end-to-end testing.
+This diagram defines the full user journey. Authentication and workspace restoration acceptance are covered in [validation](VALIDATION-AND-LIMITATIONS.md).
 
 ## An example
 
 Imagine a bakery website has a link from /services to /old-pricing that returns HTTP 404 (page not found). COPLIT should show the source page, broken destination and observed response, explain why visitors cannot reach the page, and suggest updating the link. A recheck should inspect the relevant link and destination rather than simply accepting the user's confirmation. This is an illustrative scenario, not a recorded audit or a claim that this verifier is complete.
 
-## How I would measure usefulness
+## Measuring product usefulness
 
-I would measure how quickly users understand their first problem, how many supported problems they can fix and verify, whether explanations match website evidence, and whether users can resume previous work. These are proposed measures; no customer results have been collected.
+| Proposed measure | Definition | Decision it informs |
+|---|---|---|
+| Time to first understood issue | Time from audit results to user understanding of a finding | Simplify explanations or navigation |
+| Verified resolution rate | Verified fixes divided by supported findings attempted | Improve guidance or verification coverage |
+| Evidence alignment | Share of evaluated factual explanations supported by observations | Improve retrieval and response quality |
+| Workspace continuity | Successful resumption of prior work in evaluated sessions | Improve persistence and restoration |
+
+These are evaluation definitions, not collected customer metrics.
 
 [How the software works](ARCHITECTURE.md) · [What I have tested](VALIDATION-AND-LIMITATIONS.md)
 
