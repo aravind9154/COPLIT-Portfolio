@@ -20,6 +20,10 @@ flowchart TD
  DB --> API
 ```
 
+## Responsibilities and data flow
+
+The frontend owns interaction state; application services coordinate requests and inspection; the crawler collects observations; analysis converts supported observations into findings; PostgreSQL retains relationships and history. Retrieval supplies relevant context to the explanation layer, while verification reinspects the relevant condition. A finding, an explanation and a verification event are separate records or responsibilities: a generated explanation is not evidence that a correction succeeded.
+
 ## What each technology does
 
 | Technology | What it is and why it fits COPLIT |
