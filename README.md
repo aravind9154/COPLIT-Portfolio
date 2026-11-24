@@ -44,6 +44,7 @@ flowchart TD
 |---|---|
 | [Product case study](PRODUCT-CASE-STUDY.md) | Problem discovery, user experience, requirements and decisions |
 | [System architecture](ARCHITECTURE.md) | Component responsibilities, technology choices and communication |
+| [AI and retrieval](AI-INTELLIGENCE.md) | LLM, Gemini, RAG, context grounding and acceptance criteria |
 | [Engineering investigations](ENGINEERING-CASE-STUDIES.md) | Technical problems, reliability improvements and verification |
 | [Validation and limitations](VALIDATION-AND-LIMITATIONS.md) | Recorded results, evidence boundaries and remaining work |
 
