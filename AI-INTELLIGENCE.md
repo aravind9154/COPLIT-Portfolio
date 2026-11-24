@@ -33,6 +33,18 @@ This is how I intend the parts to work together. I still need to test the comple
 
 If a user asks why a page has a missing H1, retrieve the corresponding finding and page observation. Explain the heading issue in plain language and suggest a relevant correction. If the evidence is missing, acknowledge that limitation rather than inventing a page observation. After a correction, a deterministic check evaluates the page condition independently of the LLM.
 
+## Example of the information boundary
+
+The following is an illustrative contract, not a captured model request or response.
+
+| Input to explanation | Source |
+|---|---|
+| Website and audit identity | Authorized workspace |
+| Affected page and finding | Stored observation |
+| Relevant previous interaction | Conversation history, if applicable |
+| Suggested correction | Explanation generated from available context |
+| Verification result | Independent reinspection, not the language model |
+
 ## Why use retrieval instead of asking the model directly?
 
 Structured retrieval is appropriate for exact identifiers and relational evidence. Semantic retrieval can help with natural-language relevance but needs ownership filters and relevance evaluation. A separate vector database is not assumed. Gemini can be replaced in principle through an adapter, but provider portability requires testing.
@@ -48,3 +60,6 @@ Structured retrieval is appropriate for exact identifiers and relational evidenc
 Historical conversational understanding checks reported 17/17 passing. This is component-level evidence, not an accuracy benchmark or proof of end-to-end RAG behavior.
 
 [Architecture](ARCHITECTURE.md) · [Validation](VALIDATION-AND-LIMITATIONS.md)
+
+---
+[Portfolio home](README.md) · [Product](PRODUCT-CASE-STUDY.md) · [Architecture](ARCHITECTURE.md) · [AI](AI-INTELLIGENCE.md) · [Engineering](ENGINEERING-CASE-STUDIES.md) · [Validation](VALIDATION-AND-LIMITATIONS.md) · [LinkedIn](https://www.linkedin.com/in/aravindmugappagari)
