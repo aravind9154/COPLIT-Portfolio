@@ -2,6 +2,19 @@
 
 These investigations describe recorded development work, not production incidents.
 
+## Investigation approach
+
+```mermaid
+flowchart LR
+ A[Define symptom] --> B[Trace request and state]
+ B --> C[Identify failing boundary]
+ C --> D[Review targeted correction]
+ D --> E[Evaluate expected behavior]
+ E --> F[Record outcome and limits]
+```
+
+I use AI assistance for code exploration and development, while focusing my review on requirements, system boundaries, proposed corrections and acceptance results. The investigation records below distinguish observed outcomes from diagnostic guidance.
+
 ## 1. Request reliability
 
 **Problem:** Setting a time limit on an API request is not enough if the database or another service keeps waiting after that limit.
@@ -16,7 +29,11 @@ flowchart LR
  F --> G[HTTP 504]
 ```
 
-I traced the request path and coordinated changes to deadline propagation, connection and transaction limits, persistence forwarding and API error mapping. The combined reliability patch set passed 6/6 syntax, 31/31 mocked behavior and 9/9 source-contract checks. I still need to check that a real request exceeding its deadline returns HTTP 504 as expected.
+I traced the request path and coordinated changes to deadline propagation, connection and transaction limits, persistence forwarding and API error mapping. The combined reliability patch set passed 6/6 syntax, 31/31 mocked behavior and 9/9 source-contract checks. The offline results establish patch-level behavior; the live HTTP 504 acceptance check is listed in validation.
+
+### Why the correction spans multiple layers
+
+A timeout at the API boundary cannot by itself stop database work. The reliability changes therefore address the service budget, connection waiting, transaction waiting and persistence path together. The alternative of increasing a single timeout would not resolve the underlying propagation problem. The user-facing objective is a bounded wait and a meaningful error instead of an indefinitely pending request.
 
 ## 2. Streaming lifecycle
 
