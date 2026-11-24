@@ -53,7 +53,7 @@ flowchart TD
  G --> I[Next finding]
 ```
 
-Historical local audit #58 recorded two supported findings verified fixed and next-finding progression. The example demonstrates a local workflow, not universal verification coverage. Missing H1 and missing meta description are documented supported examples.
+Recorded local audit #58 recorded two supported findings verified fixed and next-finding progression. The example demonstrates a local workflow, not universal verification coverage. Missing H1 and missing meta description are documented supported examples.
 
 ## 4. Answering from actual website information
 
@@ -69,7 +69,7 @@ Generic answers may be plausible but unsupported. The design separates authorita
 
 These summaries are based on recorded development work. They are not substitutes for original logs.
 
-## 5. How I would investigate common errors
+## 5. Troubleshooting guide
 
 The following is a diagnostic playbook, not a record of additional incidents.
 
@@ -81,8 +81,6 @@ The following is a diagnostic playbook, not a record of additional incidents.
 | Audit progress stalls | Polling, job state and backend availability | Preserve uncertainty and avoid false completion |
 | Verification fetch fails | Network response and evidence sufficiency | Report inability to verify, not a successful fix |
 | AI response lacks evidence | Retrieval scope and context | Acknowledge missing evidence |
-
-I start by reproducing the problem when it is safe to do so. Then I follow the request through the application, look for the cause, review a change and check whether it solves the problem. I use AI tools to help with development, but I rely on test results to decide whether a change works.
 
 [Architecture](ARCHITECTURE.md) · [Validation](VALIDATION-AND-LIMITATIONS.md)
 
