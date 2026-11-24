@@ -1,10 +1,10 @@
-# Engineering investigations
+# Technical problems I worked on
 
 These investigations describe recorded development work, not production incidents.
 
 ## 1. Request reliability
 
-**Problem:** An API deadline can be ineffective when downstream services or database operations ignore the remaining time budget.
+**Problem:** Setting a time limit on an API request is not enough if the database or another service keeps waiting after that limit.
 
 ```mermaid
 flowchart LR
@@ -16,13 +16,13 @@ flowchart LR
  F --> G[HTTP 504]
 ```
 
-I traced the request path and coordinated changes to deadline propagation, connection and transaction limits, persistence forwarding and API error mapping. The combined P11 patch set passed 6/6 syntax, 31/31 mocked behavior and 9/9 source-contract checks. Live deadline mapping remains pending.
+I traced the request path and coordinated changes to deadline propagation, connection and transaction limits, persistence forwarding and API error mapping. The combined P11 patch set passed 6/6 syntax, 31/31 mocked behavior and 9/9 source-contract checks. I still need to check that a real request exceeding its deadline returns HTTP 504 as expected.
 
 ## 2. Streaming lifecycle
 
 SSE allows a server to send incremental events over an HTTP connection. Completion, exceptions and client disconnects require consistent cleanup. Streaming lifecycle repairs were included in the P11 offline acceptance set; live disconnect and recovery behavior remain unverified.
 
-## 3. Deterministic verification
+## 3. Checking whether a fix worked
 
 ```mermaid
 flowchart TD
@@ -38,11 +38,11 @@ flowchart TD
 
 Historical local audit #58 recorded two supported findings verified fixed and next-finding progression. The example demonstrates a local workflow, not universal verification coverage. Missing H1 and missing meta description are documented supported examples.
 
-## 4. Grounded conversational intelligence
+## 4. Answering from actual website information
 
 Generic answers may be plausible but unsupported. The design separates authoritative findings from model-generated explanation, retrieves website-specific context and avoids rigid keyword-driven replies. Conversational understanding recorded 17/17 local checks; integrated grounding and model behavior remain acceptance tasks.
 
-## 5. Troubleshooting approach
+## 5. How I would investigate common errors
 
 The following is a diagnostic playbook, not a record of additional incidents.
 
@@ -55,6 +55,6 @@ The following is a diagnostic playbook, not a record of additional incidents.
 | Verification fetch fails | Network response and evidence sufficiency | Report inability to verify, not a successful fix |
 | AI response lacks evidence | Retrieval scope and context | Acknowledge missing evidence |
 
-My approach is to reproduce the symptom where safe, trace the affected boundary, identify the cause, review a targeted correction and validate the result. AI-assisted implementation is part of this workflow; the evidence determines whether a change is accepted.
+I start by reproducing the problem when it is safe to do so. Then I follow the request through the application, look for the cause, review a change and check whether it solves the problem. I use AI tools to help with development, but I rely on test results to decide whether a change works.
 
 [Architecture](ARCHITECTURE.md) · [Validation](VALIDATION-AND-LIMITATIONS.md)
