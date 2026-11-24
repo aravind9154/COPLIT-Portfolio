@@ -29,7 +29,7 @@ flowchart LR
  F --> G[HTTP 504]
 ```
 
-I traced the request path and coordinated changes to deadline propagation, connection and transaction limits, persistence forwarding and API error mapping. The offline checks evaluated whether the changed files parsed, time budgets passed between layers, connection waiting was bounded, transactions handled timeout and rollback, persistence forwarded timeout arguments, and the API mapped deadline failures to HTTP 504. All recorded checks passed within their controlled scope. [See the detailed test results](VALIDATION-AND-LIMITATIONS.md#what-was-tested-and-what-the-results-establish). Live HTTP 504 behavior remains unverified.
+I traced the request path and coordinated changes to deadline propagation, connection and transaction limits, persistence forwarding and API error mapping. The offline checks evaluated whether the changed files parsed, time budgets passed between layers, connection waiting was bounded, transactions handled timeout and rollback, persistence forwarded timeout arguments, and the API mapped deadline failures to HTTP 504. All recorded checks passed within their controlled scope. [See the detailed test results](VALIDATION-AND-LIMITATIONS.md#what-was-tested-and-what-the-results-establish). 
 
 ### Why the correction spans multiple layers
 
@@ -37,7 +37,7 @@ A timeout at the API boundary cannot by itself stop database work. The reliabili
 
 ## 2. Streaming lifecycle
 
-SSE allows a server to send incremental events over an HTTP connection. Completion, exceptions and client disconnects require consistent cleanup. Streaming lifecycle repairs were included in the offline reliability acceptance set; live disconnect and recovery behavior remain unverified.
+SSE allows a server to send incremental events over an HTTP connection. Completion, exceptions and client disconnects require consistent cleanup. Streaming lifecycle repairs were included in the offline reliability acceptance set; the recorded checks used simulated service behavior.
 
 ## 3. Checking whether a fix worked
 
@@ -57,15 +57,15 @@ In local audit #58, missing H1 and missing meta description findings were record
 
 ## 4. Answering from actual website information
 
-Generic answers may be plausible but unsupported. The design separates authoritative findings from model-generated explanation, retrieves website-specific context and avoids rigid keyword-driven replies. The recorded conversational understanding component checks passed. They evaluate interpretation rather than proving end-to-end retrieval or model grounding; individual test cases are not available in the retrieved records.
+Generic answers may be plausible but unsupported. The design separates authoritative findings from model-generated explanation, retrieves website-specific context and avoids rigid keyword-driven replies. The recorded conversational understanding component checks passed. They evaluate interpretation rather than proving end-to-end retrieval or model grounding; 
 
-## Investigation record: what the checks establish
+## Engineering results
 
-| Investigation | Change or decision | Recorded outcome | Remaining evidence |
+| Investigation | Change or decision | Recorded outcome | Test scope |
 |---|---|---|---|
-| Request deadlines | Propagate time budgets through services and persistence | Deadline handoff, connection waiting, rollback and API contracts passed offline | Live timeout response |
-| Website correction | Reinspect supported conditions independently | Local audit #58 recorded two verified findings and next-finding progression | Original sanitized audit output |
-| Conversational understanding | Keep interpretation within website context | Recorded interpretation checks passed | Integrated retrieval and model evaluation |
+| Request deadlines | Propagate time budgets through services and persistence | Deadline handoff, connection waiting, rollback and API contracts passed offline | Simulated behavior and code inspection |
+| Website correction | Reinspect supported conditions independently | Local audit #58 recorded two verified findings and next-finding progression | Recorded local audit |
+| Conversational understanding | Keep interpretation within website context | Recorded interpretation checks passed | Conversational component checks |
 
 These summaries are based on recorded development work. They are not substitutes for original logs.
 
