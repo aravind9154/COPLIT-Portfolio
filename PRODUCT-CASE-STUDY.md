@@ -71,9 +71,9 @@ flowchart TD
 
 This diagram defines the full user journey. Authentication and workspace restoration acceptance are covered in [validation](VALIDATION-AND-LIMITATIONS.md).
 
-## An example
+## Example: a missing page heading
 
-Imagine a bakery website has a link from /services to /old-pricing that returns HTTP 404 (page not found). COPLIT should show the source page, broken destination and observed response, explain why visitors cannot reach the page, and suggest updating the link. A recheck should inspect the relevant link and destination rather than simply accepting the user's confirmation. This is an illustrative scenario, not a recorded audit or a claim that this verifier is complete.
+A website owner needs to know which pages lack a main heading, why the heading matters and how to correct it. The guided workflow connects affected pages to the finding, explains the correction and checks the heading again after the user changes the website. Missing H1 is a documented supported verification example; this scenario is illustrative.
 
 ## Measuring product usefulness
 
