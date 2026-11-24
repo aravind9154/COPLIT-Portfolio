@@ -1,87 +1,57 @@
 # COPLIT
-### From technical SEO findings to verified corrective work
 
-**Independent product and engineering project · Aravind Mugappagari**
+**Helping website owners understand and fix technical SEO problems.**
 
-COPLIT is an AI-powered technical SEO intelligence platform in active development. Its purpose is to help website owners understand what is wrong with their website, decide what to address first, and verify whether their corrections worked.
+I'm building COPLIT because finding a website problem and knowing how to fix it are two different things. Tools such as Semrush, Ahrefs and Screaming Frog provide detailed audits, but someone unfamiliar with SEO may still need help interpreting the results.
 
-> Development-stage product. Private application source; public engineering documentation. No production-readiness or customer-adoption claims.
+I want COPLIT to answer five questions: What is wrong? Why does it matter? Where should I start? How can I fix it? Did my change work?
 
-## The problem
-
-SEO audits can reveal hundreds of observations. For a user without specialist knowledge, identifying a problem is only the beginning.
-
-| User question | COPLIT's intended response |
-|---|---|
-| What is wrong? | Inspect the website and identify supported findings |
-| Why does it matter? | Explain findings using page-level evidence |
-| Where should I start? | Organize and prioritize related corrective work |
-| What should I change? | Provide contextual guidance |
-| Did it work? | Recheck supported conditions and preserve the outcome |
-
-Established SEO platforms provide powerful auditing and research capabilities. COPLIT focuses on the narrower experience of moving from diagnosis to understandable, verified corrective work.
-
-## The product journey
+## How it is designed to work
 
 ```mermaid
 flowchart TD
- A[Connect website] --> B[Discover and inspect pages]
- B --> C[Collect evidence and diagnose]
- C --> D[Organize and prioritize]
- D --> E[Explain and guide]
- E --> F[User makes correction]
- F --> G{Recheck supported condition}
- G -->|Resolved| H[Record verified outcome]
- G -->|Not resolved| E
- H --> I[Continue with next priority]
+ A[Connect a website] --> B[Crawl and inspect pages]
+ B --> C[Find problems and collect evidence]
+ C --> D[Group and prioritize problems]
+ D --> E[Explain and suggest a fix]
+ E --> F[User changes their website]
+ F --> G{Check again}
+ G -->|Fixed| H[Save result and move on]
+ G -->|Not fixed or uncertain| E
 ```
 
-*Conceptual workflow; implementation and validation coverage vary by capability.*
+For example, if several pages have no main heading, the user should see one understandable problem with a list of affected pages, rather than having to interpret each report entry separately. The user makes the changes; COPLIT checks supported problems again.
 
-## Explore the evidence
+## Explore the project
 
-| Document | What it demonstrates |
+| Read about | What is inside |
 |---|---|
-| [Product case study](PRODUCT-CASE-STUDY.md) | Problem discovery, user experience, requirements and decisions |
-| [System architecture](ARCHITECTURE.md) | Component responsibilities, technology choices and communication |
-| [AI and retrieval](AI-INTELLIGENCE.md) | LLM, Gemini, RAG, context grounding and acceptance criteria |
-| [Engineering investigations](ENGINEERING-CASE-STUDIES.md) | Technical problems, reliability improvements and verification |
-| [Validation and limitations](VALIDATION-AND-LIMITATIONS.md) | Recorded results, evidence boundaries and remaining work |
+| [Why I started COPLIT](PRODUCT-CASE-STUDY.md) | SEO, user needs, product choices and the journey from login to logout |
+| [How the software works](ARCHITECTURE.md) | Frontend, backend, APIs, crawling, database, security and technology choices |
+| [How the AI works](AI-INTELLIGENCE.md) | Gemini, LLMs, RAG, embeddings and website-specific answers |
+| [Problems I worked on](ENGINEERING-CASE-STUDIES.md) | Timeouts, streaming, troubleshooting and checking fixes |
+| [What I have tested](VALIDATION-AND-LIMITATIONS.md) | Recorded results and what still needs testing |
 
-## System at a glance
+## The main parts
 
 ```mermaid
-flowchart TD
- U[Website owner] --> UI[Next.js / React / TypeScript]
- UI <-->|REST / JSON| API[FastAPI / Python]
+flowchart LR
+ UI[Next.js and React] <-->|HTTP and JSON| API[Python and FastAPI]
  API --> C[Crawler and Playwright]
- API --> A[Analysis and prioritization]
- C --> A
+ C --> A[SEO checks]
  A --> DB[(PostgreSQL)]
- API --> V[Deterministic verification]
+ API --> V[Check fixes]
  V --> DB
- API --> L[Contextual AI services]
- DB -. Website evidence and history .-> L
- L -. Explanation .-> API
+ API --> AI[AI explanation]
+ DB -.-> AI
 ```
 
-The diagram represents logical responsibilities rather than a verified deployment topology. Gemini integration, retrieval and streaming require further integrated validation.
+This shows the intended connections, not a deployed system. AI and retrieval still need complete integration testing.
 
-## Recorded engineering results
+## Progress so far
 
-| Evidence | Recorded outcome | Scope |
-|---|---|---|
-| P11 syntax checks | 6/6 passed | Offline patch acceptance |
-| P11 mocked behavior | 31/31 passed | Offline patch acceptance |
-| P11 source contracts | 9/9 passed | Offline patch acceptance |
-| Supported issue verification | Two findings verified after corrections | Prior local audit workflow |
+A recorded local audit verified two supported findings after corrections and moved to the next finding. A later reliability patch set passed 6 syntax checks, 31 mocked behavior checks and 9 source-contract checks. These are development results, not production performance measurements.
 
-These results are historical development records, not production benchmarks or proof of universal issue coverage.
+I work on the requirements, architecture, AI-assisted development, debugging and testing. The application source is private; this repository explains the work publicly. COPLIT is still under development.
 
-## My contribution
-
-I defined the product requirements and guided workflow, evaluated technology choices, coordinated AI-assisted implementation, investigated integration failures and reviewed validation results. My focus is understanding system behavior and establishing whether changes meet their intended requirements.
-
-## Development boundaries
-
-The private application remains under development. Wider verification coverage, integrated AI behavior, runtime reliability, security acceptance and production deployment are not claimed as completed. No credentials, private implementation code or customer data are included in this portfolio.
+Questions or feedback are welcome through [LinkedIn](https://www.linkedin.com/in/aravindmugappagari).
