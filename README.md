@@ -1,57 +1,49 @@
+<div align="center">
+
 # COPLIT
 
-**Helping website owners understand and fix technical SEO problems.**
+**Website diagnostics, practical guidance and verification**
 
-I'm building COPLIT because finding a website problem and knowing how to fix it are two different things. Tools such as Semrush, Ahrefs and Screaming Frog provide detailed audits, but someone unfamiliar with SEO may still need help interpreting the results.
+AI-powered SEO intelligence
 
-I want COPLIT to answer five questions: What is wrong? Why does it matter? Where should I start? How can I fix it? Did my change work?
+</div>
 
-## How it is designed to work
+COPLIT brings technical website inspection and guided problem resolution into one workspace. Its central design decision is to keep observed website evidence separate from AI-generated explanations and to check corrections independently.
 
-```mermaid
-flowchart TD
- A[Connect a website] --> B[Crawl and inspect pages]
- B --> C[Find problems and collect evidence]
- C --> D[Group and prioritize problems]
- D --> E[Explain and suggest a fix]
- E --> F[User changes their website]
- F --> G{Check again}
- G -->|Fixed| H[Save result and move on]
- G -->|Not fixed or uncertain| E
-```
+## Product experience
 
-For example, if several pages have no main heading, the user should see one understandable problem with a list of affected pages, rather than having to interpret each report entry separately. The user makes the changes; COPLIT checks supported problems again.
+| Stage | What the user needs | System responsibility |
+|---|---|---|
+| Connect | Identify the website to inspect | Establish website scope and initiate inspection |
+| Understand | Know what is wrong and why | Collect observations, group findings and explain their impact |
+| Act | Decide what to change | Prioritize findings and provide relevant guidance |
+| Verify | Know whether the change worked | Reinspect supported conditions and record the result |
+| Return | Continue without starting over | Retain audit history and restore context |
 
-## Explore the project
+## Explore the product and its engineering
 
-| Read about | What is inside |
+| Area | Questions answered |
 |---|---|
-| [Why I started COPLIT](PRODUCT-CASE-STUDY.md) | SEO, user needs, product choices and the journey from login to logout |
-| [How the software works](ARCHITECTURE.md) | Frontend, backend, APIs, crawling, database, security and technology choices |
-| [How the AI works](AI-INTELLIGENCE.md) | Gemini, LLMs, RAG, embeddings and website-specific answers |
-| [Problems I worked on](ENGINEERING-CASE-STUDIES.md) | Timeouts, streaming, troubleshooting and checking fixes |
-| [What I have tested](VALIDATION-AND-LIMITATIONS.md) | Recorded results and what still needs testing |
+| [Product research and design](PRODUCT-CASE-STUDY.md) | Why this problem? Who needs the solution? How were product decisions made? |
+| [System architecture](ARCHITECTURE.md) | How do the interface, APIs, crawler, database and services communicate? |
+| [AI intelligence](AI-INTELLIGENCE.md) | How does retrieval connect website evidence to language-model explanations? |
+| [Engineering investigations](ENGINEERING-CASE-STUDIES.md) | How were reliability problems investigated and corrections evaluated? |
+| [Validation and reliability](VALIDATION-AND-LIMITATIONS.md) | What behavior has been checked, and what remains unverified? |
 
-## The main parts
+## A documented engineering outcome
 
-```mermaid
-flowchart LR
- UI[Next.js and React] <-->|HTTP and JSON| API[Python and FastAPI]
- API --> C[Crawler and Playwright]
- C --> A[SEO checks]
- A --> DB[(PostgreSQL)]
- API --> V[Check fixes]
- V --> DB
- API --> AI[AI explanation]
- DB -.-> AI
-```
+A recorded local audit checked two supported findings after corrections, marked both verified and moved to the next finding. [Read the verification investigation](ENGINEERING-CASE-STUDIES.md#3-checking-whether-a-fix-worked) for the workflow and evidence boundaries.
 
-This shows the intended connections, not a deployed system. AI and retrieval still need complete integration testing.
+## Design principles
 
-## Progress so far
+- Findings originate from website observations, not language-model guesses.
+- Guidance explains the evidence; the website owner controls changes.
+- Verification checks observable conditions rather than accepting a claim that a fix worked.
+- Website and account boundaries govern access to stored information.
 
-A recorded local audit verified two supported findings after corrections and moved to the next finding. A later reliability patch set passed 6 syntax checks, 31 mocked behavior checks and 9 source-contract checks. These are development results, not production performance measurements.
+The portfolio documents product decisions, architecture and recorded engineering work. Application source is private. Detailed implementation and validation boundaries are described in the linked documents.
 
-I work on the requirements, architecture, AI-assisted development, debugging and testing. The application source is private; this repository explains the work publicly. COPLIT is still under development.
+**Next:** [Explore the product decisions](PRODUCT-CASE-STUDY.md) or [inspect the architecture](ARCHITECTURE.md).
 
-Questions or feedback are welcome through [LinkedIn](https://www.linkedin.com/in/aravindmugappagari).
+---
+[Portfolio home](README.md) · [Product](PRODUCT-CASE-STUDY.md) · [Architecture](ARCHITECTURE.md) · [AI](AI-INTELLIGENCE.md) · [Engineering](ENGINEERING-CASE-STUDIES.md) · [Validation](VALIDATION-AND-LIMITATIONS.md) · [LinkedIn](https://www.linkedin.com/in/aravindmugappagari)
