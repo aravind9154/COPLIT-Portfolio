@@ -5,14 +5,14 @@
 | Check | Outcome | Evidence scope |
 |---|---|---|
 | Reliability patch syntax | 6/6 passed | Recorded offline checks of the reliability changes |
-| Reliability patch mocked behavior | 31/31 passed | Historical offline patch acceptance |
-| Reliability patch source contracts | 9/9 passed | Historical offline patch acceptance |
+| Reliability patch mocked behavior | 31/31 passed | Recorded offline patch acceptance |
+| Reliability patch source contracts | 9/9 passed | Recorded offline patch acceptance |
 | Conversational understanding | 17/17 passed | Recorded checks of conversational understanding |
 | Local audit #58 | Two findings verified fixed; next finding progressed | Recorded local audit |
 
 These are summarized development records. Original sanitized logs and independently reproducible demonstrations are not yet attached. No production benchmarks, customer outcomes or model accuracy claims are made.
 
-## Integrated acceptance criteria
+## Integrated acceptance criteria — not yet established
 
 | Capability | What needs checking |
 |---|---|
