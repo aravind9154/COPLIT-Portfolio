@@ -32,7 +32,7 @@ COPLIT brings technical website inspection and guided problem resolution into on
 
 ## A documented engineering outcome
 
-A recorded local audit checked two supported findings after corrections, marked both verified and moved to the next finding. [Read the verification investigation](ENGINEERING-CASE-STUDIES.md#3-checking-whether-a-fix-worked) for the workflow and evidence boundaries.
+In a recorded local audit, reinspection confirmed corrections to missing main headings (H1) and missing meta descriptions. Both findings were marked fixed and the workflow moved to the next finding. [Read the verification investigation](ENGINEERING-CASE-STUDIES.md#3-checking-whether-a-fix-worked) for the workflow and evidence boundaries.
 
 ## Product and engineering ownership
 
