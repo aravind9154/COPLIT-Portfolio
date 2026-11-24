@@ -36,18 +36,16 @@ A recorded local audit checked two supported findings after corrections, marked 
 
 ## Product and engineering ownership
 
-My work covers defining the problem and user journey, choosing component responsibilities, coordinating AI-assisted development, investigating software failures and reviewing acceptance results. The central decisions connect user needs to technical behavior: grouping findings without losing page detail, explaining observations without inventing facts, and verifying corrections independently of generated advice.
+I define product requirements and system responsibilities, coordinate AI-assisted development, investigate failures and review test outcomes.
 
 ## Design principles
 
 - Findings originate from website observations, not language-model guesses.
 - Guidance explains the evidence; the website owner controls changes.
 - Verification checks observable conditions rather than accepting a claim that a fix worked.
-- Website and account boundaries govern access to stored information.
+- Website and account boundaries are required for access to stored information.
 
 The portfolio documents product decisions, architecture and recorded engineering work. Application source is private. Detailed implementation and validation boundaries are described in the linked documents.
-
-**Next:** [Explore the product decisions](PRODUCT-CASE-STUDY.md) or [inspect the architecture](ARCHITECTURE.md).
 
 ---
 [Portfolio home](README.md) · [Product](PRODUCT-CASE-STUDY.md) · [Architecture](ARCHITECTURE.md) · [AI](AI-INTELLIGENCE.md) · [Engineering](ENGINEERING-CASE-STUDIES.md) · [Validation](VALIDATION-AND-LIMITATIONS.md) · [LinkedIn](https://www.linkedin.com/in/aravindmugappagari)
