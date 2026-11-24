@@ -29,7 +29,7 @@ flowchart LR
  F --> G[HTTP 504]
 ```
 
-I traced the request path and coordinated changes to deadline propagation, connection and transaction limits, persistence forwarding and API error mapping. The combined reliability patch set passed 6/6 syntax, 31/31 mocked behavior and 9/9 source-contract checks. The offline results establish patch-level behavior; the live HTTP 504 acceptance check is listed in validation.
+I traced the request path and coordinated changes to deadline propagation, connection and transaction limits, persistence forwarding and API error mapping. The offline checks evaluated whether the changed files parsed, time budgets passed between layers, connection waiting was bounded, transactions handled timeout and rollback, persistence forwarded timeout arguments, and the API mapped deadline failures to HTTP 504. All recorded checks passed within their controlled scope. [See the detailed test results](VALIDATION-AND-LIMITATIONS.md#what-was-tested-and-what-the-results-establish). Live HTTP 504 behavior remains unverified.
 
 ### Why the correction spans multiple layers
 
@@ -53,19 +53,19 @@ flowchart TD
  G --> I[Next finding]
 ```
 
-Recorded local audit #58 recorded two supported findings verified fixed and next-finding progression. The example demonstrates a local workflow, not universal verification coverage. Missing H1 and missing meta description are documented supported examples.
+In local audit #58, missing H1 and missing meta description findings were recorded as fixed after corrections and reinspection. The workflow then advanced to the next finding. The example demonstrates a local workflow, not universal verification coverage. Missing H1 and missing meta description are documented supported examples.
 
 ## 4. Answering from actual website information
 
-Generic answers may be plausible but unsupported. The design separates authoritative findings from model-generated explanation, retrieves website-specific context and avoids rigid keyword-driven replies. Conversational understanding recorded 17/17 local checks; integrated grounding and model behavior remain acceptance tasks.
+Generic answers may be plausible but unsupported. The design separates authoritative findings from model-generated explanation, retrieves website-specific context and avoids rigid keyword-driven replies. The recorded conversational understanding component checks passed. They evaluate interpretation rather than proving end-to-end retrieval or model grounding; individual test cases are not available in the retrieved records.
 
 ## Investigation record: what the checks establish
 
 | Investigation | Change or decision | Recorded outcome | Remaining evidence |
 |---|---|---|---|
-| Request deadlines | Propagate time budgets through services and persistence | Offline syntax, mocked behavior and source-contract checks passed | Live timeout response |
+| Request deadlines | Propagate time budgets through services and persistence | Deadline handoff, connection waiting, rollback and API contracts passed offline | Live timeout response |
 | Website correction | Reinspect supported conditions independently | Local audit #58 recorded two verified findings and next-finding progression | Original sanitized audit output |
-| Conversational understanding | Keep interpretation within website context | 17/17 recorded component checks | Integrated retrieval and model evaluation |
+| Conversational understanding | Keep interpretation within website context | Recorded interpretation checks passed | Integrated retrieval and model evaluation |
 
 These summaries are based on recorded development work. They are not substitutes for original logs.
 
