@@ -1,5 +1,7 @@
 # Engineering validation and results
 
+The records below distinguish local application behavior, simulated checks and source inspection from full integrated acceptance. A passing component check does not establish that every service works together under real-world conditions.
+
 ## What was tested and what the results establish
 
 | Engineering area | Test performed | Result |
@@ -23,6 +25,16 @@
 - **Application interfaces:** Local API availability and frontend compiler checks confirmed the specific interfaces and code checks described above.
 
 The results are development-record summaries of local execution, simulated behavior and code inspection. They are not production benchmarks or independent end-to-end certification. Original execution logs are not included.
+
+## Acceptance boundaries
+
+| Area | What the available records establish |
+|---|---|
+| Authentication and workspace restoration | Intended behavior is documented; integrated acceptance is not established here. |
+| Gemini and retrieval | Question interpretation was checked; live model grounding and integrated retrieval are not established. |
+| Streaming and deadlines | Offline simulated and source checks are recorded; full live lifecycle acceptance is not established. |
+| Security and scalability | Design requirements are documented; comprehensive security testing and production benchmarks are not established. |
+| Verification coverage | The recorded local example covers missing H1 and missing meta description; it does not establish universal coverage. |
 
 [Engineering investigations](ENGINEERING-CASE-STUDIES.md) · [Architecture](ARCHITECTURE.md)
 
