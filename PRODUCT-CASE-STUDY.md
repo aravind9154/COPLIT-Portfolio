@@ -1,4 +1,4 @@
-# Why I started COPLIT
+# Product research and experience design
 
 ## Understanding the problem
 
@@ -13,6 +13,18 @@ While exploring SEO tools, I became interested in what happens after an audit. A
 | Small agency | Organize website work and retain its history |
 
 These are intended users, not confirmed customers.
+
+## Research basis and product positioning
+
+The starting point was an examination of existing SEO audit tools and the interpretation burden that can follow an audit. The comparison below describes the design focus, not a claim that competitors lack these capabilities.
+
+| Existing audit workflow | COPLIT design focus |
+|---|---|
+| Discover and report technical issues | Organize related observations into understandable problems |
+| Provide severity and recommendations | Connect priority and guidance to the affected website evidence |
+| Re-audit or track issues | Make supported verification part of the guided resolution workflow |
+
+Original research notes and customer interviews are not included in this portfolio; the user needs are product assumptions rather than validated market demand.
 
 ## What I decided to build
 
@@ -55,3 +67,6 @@ Imagine a bakery website has a link from /services to /old-pricing that returns 
 I would measure how quickly users understand their first problem, how many supported problems they can fix and verify, whether explanations match website evidence, and whether users can resume previous work. These are proposed measures; no customer results have been collected.
 
 [How the software works](ARCHITECTURE.md) · [What I have tested](VALIDATION-AND-LIMITATIONS.md)
+
+---
+[Portfolio home](README.md) · [Product](PRODUCT-CASE-STUDY.md) · [Architecture](ARCHITECTURE.md) · [AI](AI-INTELLIGENCE.md) · [Engineering](ENGINEERING-CASE-STUDIES.md) · [Validation](VALIDATION-AND-LIMITATIONS.md) · [LinkedIn](https://www.linkedin.com/in/aravindmugappagari)
