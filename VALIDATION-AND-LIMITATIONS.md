@@ -1,4 +1,4 @@
-# What I have tested and what remains
+# Engineering validation and acceptance
 
 ## Recorded evidence
 
@@ -12,7 +12,7 @@
 
 These are summarized development records. Original sanitized logs and independently reproducible demonstrations are not yet attached. No production benchmarks, customer outcomes or model accuracy claims are made.
 
-## What I still need to test
+## Integrated acceptance criteria
 
 | Capability | What needs checking |
 |---|---|
@@ -25,7 +25,18 @@ These are summarized development records. Original sanitized logs and independen
 | Verification | Supported issue coverage and uncertain outcomes |
 | Production readiness | Dependency reproducibility, migrations, security and operational readiness |
 
-## Before releasing COPLIT
+## Quality decisions
+
+| Outcome | Decision |
+|---|---|
+| Syntax check passes | Proceed to behavioral checks; do not infer runtime correctness |
+| Mocked behavior passes | Retain the result within its controlled test scope |
+| Verification evidence is insufficient | Keep the finding unresolved or uncertain |
+| Integrated behavior is unverified | Do not represent it as accepted |
+
+The acceptance approach distinguishes a plausible implementation from a demonstrated outcome.
+
+## Release acceptance sequence
 
 ```mermaid
 flowchart LR
@@ -35,7 +46,7 @@ flowchart LR
  D --> E[Release decision]
 ```
 
-Passing a syntax check means the code can be parsed. Mocked checks test behavior using controlled substitutes for dependencies. Source-contract checks examine expected code relationships. None of these alone proves that the whole application works with real services. The project remains in active development. The private implementation and credentials are not published.
+Passing a syntax check means the code can be parsed. Mocked checks test behavior using controlled substitutes for dependencies. Source-contract checks examine expected code relationships. None of these alone proves that the whole application works with real services. The private implementation and credentials are not published.
 
 [Engineering investigations](ENGINEERING-CASE-STUDIES.md) · [Architecture](ARCHITECTURE.md)
 
