@@ -1,6 +1,6 @@
 # How COPLIT uses AI
 
-COPLIT's AI layer is intended to explain collected website evidence, not invent technical findings or decide independently that a correction succeeded.
+The AI design assigns language models a specific responsibility: interpret questions and explain collected website evidence. Technical findings and verification outcomes remain the responsibility of inspection and rule-based checks.
 
 ## The technologies behind the answers
 
@@ -27,7 +27,7 @@ flowchart TD
  A --> U[User]
 ```
 
-This is how I intend the parts to work together. I still need to test the complete retrieval and Gemini workflow.
+This diagram defines the AI information flow. Integrated retrieval and Gemini acceptance are tracked in [validation](VALIDATION-AND-LIMITATIONS.md).
 
 ## Example: explaining a missing heading
 
@@ -49,7 +49,19 @@ The following is an illustrative contract, not a captured model request or respo
 
 Structured retrieval is appropriate for exact identifiers and relational evidence. Semantic retrieval can help with natural-language relevance but needs ownership filters and relevance evaluation. A separate vector database is not assumed. Gemini can be replaced in principle through an adapter, but provider portability requires testing.
 
-## What I need to test
+## Design decisions and failure handling
+
+| Situation | Design response | Reason |
+|---|---|---|
+| Exact finding or page requested | Prefer structured retrieval | Exact identifiers require precise matching |
+| Natural-language question | Consider semantic relevance within authorized context | Similarity alone does not establish correctness |
+| Evidence unavailable | Communicate uncertainty | Avoid inventing website observations |
+| Older conversation conflicts with new inspection | Prefer current authoritative evidence | Website state can change |
+| User reports a correction | Invoke an independent supported check | A model's agreement is not verification |
+
+The design prioritizes answer reliability over unrestricted conversational output. These are behavioral requirements; their integrated acceptance is tracked separately.
+
+## AI acceptance criteria
 
 - Responses stay within the authorized connected website.
 - Claims are traceable to retrieved observations.
