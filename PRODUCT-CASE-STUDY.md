@@ -50,6 +50,10 @@ The product focuses on the effort between identifying an issue and resolving it.
 
 The strategic focus is depth of problem resolution rather than matching every feature of a general-purpose SEO suite. This is a product rationale, not a claim of market validation.
 
+## How findings become decisions
+
+An observation is a fact collected from a page; a finding is a technical issue inferred from one or more observations using a supported check. Grouping reduces repeated explanations without discarding affected URLs. Priority determines the suggested order of work, not a guaranteed ranking improvement. Guidance explains a proposed correction; verification checks whether the relevant condition has changed.
+
 ## From login to logout
 
 ```mermaid
@@ -69,7 +73,7 @@ flowchart TD
  K --> L[Sign out]
 ```
 
-This diagram defines the full user journey. Authentication and workspace restoration acceptance are covered in [validation](VALIDATION-AND-LIMITATIONS.md).
+This diagram defines the full user journey. Authentication and workspace restoration are design requirements; their integrated acceptance is not established by the [recorded validation results](VALIDATION-AND-LIMITATIONS.md).
 
 ## Example: a missing page heading
 
