@@ -2,6 +2,10 @@
 
 The AI design assigns language models a specific responsibility: interpret questions and explain collected website evidence. Technical findings and verification outcomes remain the responsibility of inspection and rule-based checks.
 
+## Why retrieval is necessary
+
+An LLM can explain general SEO concepts without knowing the current state of a particular website. Retrieval-augmented generation (RAG) is the design for supplying relevant stored observations before generating an answer. For exact page or finding identifiers, relational lookup is preferable to similarity alone. Semantic retrieval can help when a question is phrased differently from the stored information. Neither retrieval nor generation proves that a website has changed; that requires reinspection.
+
 ## The technologies behind the answers
 
 | Concept | Meaning and COPLIT application |
@@ -27,7 +31,7 @@ flowchart TD
  A --> U[User]
 ```
 
-This diagram defines the AI information flow. Integrated retrieval and Gemini acceptance are tracked in [validation](VALIDATION-AND-LIMITATIONS.md).
+This diagram defines the AI information flow. The [validation scope](VALIDATION-AND-LIMITATIONS.md) distinguishes recorded question-interpretation checks from integrated retrieval and Gemini acceptance, which are not established by those checks.
 
 ## Example: explaining a missing heading
 
