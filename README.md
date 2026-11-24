@@ -34,6 +34,10 @@ COPLIT brings technical website inspection and guided problem resolution into on
 
 A recorded local audit checked two supported findings after corrections, marked both verified and moved to the next finding. [Read the verification investigation](ENGINEERING-CASE-STUDIES.md#3-checking-whether-a-fix-worked) for the workflow and evidence boundaries.
 
+## Product and engineering ownership
+
+My work covers defining the problem and user journey, choosing component responsibilities, coordinating AI-assisted development, investigating software failures and reviewing acceptance results. The central decisions connect user needs to technical behavior: grouping findings without losing page detail, explaining observations without inventing facts, and verifying corrections independently of generated advice.
+
 ## Design principles
 
 - Findings originate from website observations, not language-model guesses.
