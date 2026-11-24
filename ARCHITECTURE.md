@@ -89,6 +89,17 @@ Conceptual relationships, not an exact schema export. Links, intelligence snapsh
 
 The documented frontend uses GET /audit-progress/{progressId} for polling and POST /audits/{id}/initial-task-response for an initial task explanation. These are recorded source interfaces, not newly tested requests.
 
+## Following a request when something goes wrong
+
+| Observation | Boundary to investigate |
+|---|---|
+| Browser request fails | Frontend network request, API route and HTTP response |
+| Audit stops progressing | Progress endpoint, backend job state and stored audit records |
+| Request exceeds its time budget | Service deadline, database connection and transaction limits |
+| Explanation lacks website evidence | Authorized retrieval scope and context preparation |
+
+This is a diagnostic guide, not a record of additional incidents. See the [engineering investigations](ENGINEERING-CASE-STUDIES.md) for recorded work.
+
 ## How the smaller parts fit together
 
 | Concept | Why it matters |
@@ -113,7 +124,7 @@ These explain the design and historical source findings. Full current dependency
 
 ## Website inspection and intelligence
 
-The crawler discovers pages and links, normalizes URLs, fetches content and parses technical signals. Browser rendering complements HTTP inspection when JavaScript changes the visible document. Analysis components (historically F-series and L-series) turn observations into findings, evidence and prioritized work. Conversational components (T-series) support contextual interaction.
+The crawler discovers pages and links, normalizes URLs, fetches content and parses technical signals. Browser rendering complements HTTP inspection when JavaScript changes the visible document. Analysis components turn observations into findings, evidence and prioritized work. Conversational components support contextual interaction.
 
 ## Why these choices?
 
@@ -132,3 +143,6 @@ Account authentication, session handling and resource ownership define the inten
 Local development uses Windows, PowerShell, a Python virtual environment and Node tooling. CORS, environment configuration, dependency reproducibility, migrations, health checks, timeouts and recovery are operational concerns. Production hosting, orchestration and scalability are not claimed.
 
 [AI and retrieval](AI-INTELLIGENCE.md) · [Engineering investigations](ENGINEERING-CASE-STUDIES.md) · [Validation](VALIDATION-AND-LIMITATIONS.md)
+
+---
+[Portfolio home](README.md) · [Product](PRODUCT-CASE-STUDY.md) · [Architecture](ARCHITECTURE.md) · [AI](AI-INTELLIGENCE.md) · [Engineering](ENGINEERING-CASE-STUDIES.md) · [Validation](VALIDATION-AND-LIMITATIONS.md) · [LinkedIn](https://www.linkedin.com/in/aravindmugappagari)
