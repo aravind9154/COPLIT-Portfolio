@@ -1,8 +1,8 @@
-# Contextual AI and retrieval
+# How COPLIT uses AI
 
 COPLIT's AI layer is intended to explain collected website evidence, not invent technical findings or decide independently that a correction succeeded.
 
-## Concepts and responsibilities
+## The technologies behind the answers
 
 | Concept | Meaning and COPLIT application |
 |---|---|
@@ -27,17 +27,17 @@ flowchart TD
  A --> U[User]
 ```
 
-Logical design, not a claim of completed integrated RAG or live provider acceptance.
+This is how I intend the parts to work together. I still need to test the complete retrieval and Gemini workflow.
 
-## Example
+## Example: explaining a missing heading
 
 If a user asks why a page has a missing H1, retrieve the corresponding finding and page observation. Explain the heading issue in plain language and suggest a relevant correction. If the evidence is missing, acknowledge that limitation rather than inventing a page observation. After a correction, a deterministic check evaluates the page condition independently of the LLM.
 
-## Design trade-offs
+## Why use retrieval instead of asking the model directly?
 
 Structured retrieval is appropriate for exact identifiers and relational evidence. Semantic retrieval can help with natural-language relevance but needs ownership filters and relevance evaluation. A separate vector database is not assumed. Gemini can be replaced in principle through an adapter, but provider portability requires testing.
 
-## Acceptance criteria
+## What I need to test
 
 - Responses stay within the authorized connected website.
 - Claims are traceable to retrieved observations.
