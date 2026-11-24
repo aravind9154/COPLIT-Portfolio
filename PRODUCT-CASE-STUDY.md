@@ -1,81 +1,57 @@
-# Product discovery and design
+# Why I started COPLIT
 
-## Starting with the user
+## Understanding the problem
 
-Technical SEO helps search engines discover, interpret and access website content. A technical audit can reveal obstacles, but identifying an issue does not guarantee that a user understands its impact or knows how to resolve it.
+Search engine optimization (SEO) helps people discover websites through search engines. Technical SEO deals with whether search engines can access, understand and index pages. Fixing technical problems can help, but does not guarantee higher rankings.
 
-COPLIT began with a question: **Can a website owner move from a technical finding to a verified correction without having to interpret every technical report alone?**
+While exploring SEO tools, I became interested in what happens after an audit. A website owner may receive hundreds of findings and still not know what to do first. Semrush, Ahrefs and Screaming Frog already offer useful auditing features. My aim is not to copy all of them, but to make the process of understanding and fixing problems easier.
 
-| Intended user | Job to be done |
+| Who I am designing for | What they need |
 |---|---|
-| Website owner | Understand problems in plain English and decide where to begin |
-| Freelancer | Identify affected pages, explain evidence and track corrections |
-| Small agency | Organize corrective work and preserve its history |
+| Website owner | Understand problems without specialist terminology |
+| Freelancer | Explain affected pages and track fixes |
+| Small agency | Organize website work and retain its history |
 
-These are intended user segments, not validated customer personas or adoption figures.
+These are intended users, not confirmed customers.
 
-## Positioning
+## What I decided to build
 
-Semrush, Ahrefs and Screaming Frog are established tools with substantial audit capabilities. COPLIT does not attempt to reproduce their entire feature sets. Its product hypothesis is that a guided evidence-to-resolution workflow can reduce the interpretation burden for non-specialists.
-
-```mermaid
-flowchart LR
- A[Technical observations] --> B[Meaningful work items]
- B --> C[Plain-English explanation]
- C --> D[User correction]
- D --> E[Evidence-based recheck]
-```
-
-## Product decisions
-
-| Requirement | Chosen approach | Trade-off |
+| Decision | Why | What to watch for |
 |---|---|---|
-| Avoid overwhelming users | Group related findings, retain affected-page evidence | Grouping must not hide distinct causes |
-| Help users start | Prioritize supported findings | Severity is not a guaranteed ranking impact |
-| Make findings understandable | Contextual natural-language explanation | Model output needs grounding |
-| Establish whether work succeeded | Separate deterministic verification | Requires a supported check for each issue type |
-| Maintain continuity | Persist audit and verification history | Requires reliable ownership and restoration |
-| Preserve user control | User changes their own website | No autonomous modification |
+| Group similar findings | Avoid repeating the same explanation for many pages | Keep every affected page visible; do not assume a shared cause |
+| Prioritize problems | Help users decide where to begin | Severity is not a ranking prediction |
+| Explain in simple English | Make technical findings understandable | AI must use collected evidence |
+| Check fixes separately from AI | Advice alone cannot prove a fix | Each supported issue needs a suitable check |
+| Save history | Users should not start over each time | Protect account ownership and restore saved state |
+| Let users make changes | Keep control with the website owner | Do not modify websites automatically |
 
-## Experience from sign-in to return
+## From login to logout
 
 ```mermaid
 flowchart TD
- A[Authenticate] --> B{Restorable audit?}
+ A[Sign in] --> B{Saved audit available?}
  B -->|No| C[Connect website]
- B -->|Yes| D[Restore workspace]
- C --> E[Inspect and analyze]
- E --> F[Present prioritized findings]
+ B -->|Yes| D[Restore previous workspace]
+ C --> E[Crawl and analyze]
+ E --> F[Show findings and priorities]
  D --> F
  F --> G[Explore evidence and guidance]
- G --> H[User makes correction]
- H --> I{Verification result}
- I -->|Resolved| J[Record and continue]
- I -->|Unresolved or uncertain| G
+ G --> H[User makes changes]
+ H --> I{Check the problem again}
+ I -->|Fixed| J[Save result and continue]
+ I -->|Not fixed or uncertain| G
  J --> K[Save progress]
  K --> L[Sign out]
 ```
 
-This is the intended journey; restoration and integrated runtime acceptance are not claimed complete.
+This is the planned full experience. Saved-workspace restoration and the complete authenticated workflow still need end-to-end testing.
 
-## Example: turning an observation into work
+## An example
 
-Illustrative example, not a recorded customer audit:
+Imagine a bakery website has a link from /services to /old-pricing that returns HTTP 404 (page not found). COPLIT should show the source page, broken destination and observed response, explain why visitors cannot reach the page, and suggest updating the link. A recheck should inspect the relevant link and destination rather than simply accepting the user's confirmation. This is an illustrative scenario, not a recorded audit or a claim that this verifier is complete.
 
-| Stage | Example |
-|---|---|
-| Observation | A link on /services points to /old-pricing and returns HTTP 404 |
-| Explanation | Visitors following the link cannot reach the intended page |
-| Evidence | Source page, target URL and observed response |
-| Guidance | Update the link to the correct existing destination |
-| Verification | Re-observe the relevant link and destination; distinguish failure to fetch from resolution |
+## How I would measure usefulness
 
-## Success criteria
+I would measure how quickly users understand their first problem, how many supported problems they can fix and verify, whether explanations match website evidence, and whether users can resume previous work. These are proposed measures; no customer results have been collected.
 
-Proposed evaluation measures: time to first meaningful action, proportion of supported work items verified, evidence completeness, explanation accuracy and successful restoration. No measured customer outcomes are claimed.
-
-## My contribution
-
-I defined requirements, evaluated product alternatives, designed workflows, coordinated AI-assisted development and investigated whether system behavior matched the intended experience. The project is independently developed.
-
-[Architecture](ARCHITECTURE.md) · [Engineering investigations](ENGINEERING-CASE-STUDIES.md) · [Validation](VALIDATION-AND-LIMITATIONS.md)
+[How the software works](ARCHITECTURE.md) · [What I have tested](VALIDATION-AND-LIMITATIONS.md)
