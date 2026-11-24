@@ -1,16 +1,22 @@
 # Engineering validation and acceptance
 
-## Recorded evidence
+## What was tested and what the results establish
 
-| Check | Outcome | Evidence scope |
+| Area tested | What the check evaluated | Recorded result and meaning |
 |---|---|---|
-| Reliability patch syntax | 6/6 passed | Recorded offline checks of the reliability changes |
-| Reliability patch mocked behavior | 31/31 passed | Recorded offline patch acceptance |
-| Reliability patch source contracts | 9/9 passed | Recorded offline patch acceptance |
-| Conversational understanding | 17/17 passed | Recorded checks of conversational understanding |
-| Local audit #58 | Two findings verified fixed; next finding progressed | Recorded local audit |
+| Python syntax | Whether the six changed Python files could be parsed | All six passed; establishes syntactic validity, not runtime correctness |
+| Streaming lifecycle | Handling the lifecycle of incremental responses under controlled conditions | Six mocked checks passed; live disconnect behavior remains unverified |
+| Deadline handoff | Passing the request time budget between service layers | Five mocked checks passed; supports deadline propagation in the tested scenarios |
+| Database connection timeout | Bounding connection waiting using the supplied time budget | Eight mocked checks passed; no live database connection was exercised |
+| Transaction timeout and rollback | Transaction waiting limits and rollback behavior | Twelve mocked checks passed; live transaction recovery remains unverified |
+| Persistence contracts | Acceptance and forwarding of timeout arguments through persistence functions | Four source checks passed; confirms expected code relationships |
+| API timeout contracts | Deadline handler uniqueness, HTTP 504 mapping and forwarding timeout arguments | Five source checks passed; does not establish a live HTTP 504 response |
+| Conversational understanding | Component-level interpretation of user questions | Seventeen recorded checks passed; individual cases are not available in the retrieved record, and integrated model grounding is not established |
+| Local API readiness | GET requests to /openapi.json, /docs and /health | All returned HTTP 200; confirms local API responsiveness, not complete application functionality |
+| Frontend type checking | TypeScript compiler validation | Exit code 0; does not establish browser behavior |
+| Website correction | Recheck missing H1 and missing meta description after user corrections | Both findings were recorded as fixed in local audit #58, followed by progression to the next finding |
 
-These are summarized development records. Original sanitized logs and independently reproducible demonstrations are not yet attached. No production benchmarks, customer outcomes or model accuracy claims are made.
+The reliability checks used offline mocks and source inspection without live database, network or Gemini calls. These are recorded development summaries, not original logs. Individual case names for all mocked and conversational checks are unavailable in the retrieved records. No production benchmarks or customer outcomes are claimed.
 
 ## Integrated acceptance criteria — not yet established
 
