@@ -1,37 +1,40 @@
-# Validation, limitations, and roadmap
+# Validation and development status
 
-## Recorded validation evidence
+## Recorded evidence
 
-| Evidence | Recorded result | Interpretation |
-| --- | --- | --- |
-| P11 Python syntax checks | 6/6 passed | Checked syntax of the relevant patch set |
-| P11 mocked behavior checks | 31/31 passed | Offline behavior under mocked conditions |
-| P11 source-contract checks | 9/9 passed | Offline contract checks |
-| Local audit #58 | Two supported findings verified fixed | Historical local verification workflow |
-| Conversational understanding | 17/17 local checks reported passed | Component-level evidence, not production acceptance |
+| Check | Outcome | Evidence scope |
+|---|---|---|
+| P11 syntax | 6/6 passed | Historical offline patch acceptance |
+| P11 mocked behavior | 31/31 passed | Historical offline patch acceptance |
+| P11 source contracts | 9/9 passed | Historical offline patch acceptance |
+| Conversational understanding | 17/17 passed | Historical local component checks |
+| Local audit #58 | Two findings verified fixed; next finding progressed | Historical local workflow |
 
-**Important:** These numbers are historical development records. They are not uptime statistics, model accuracy benchmarks, independent audits, or evidence of live customer usage.
+These are summarized development records. Original sanitized logs and independently reproducible demonstrations are not yet attached. No production benchmarks, customer outcomes or model accuracy claims are made.
 
-## Known limits
+## What remains to be established
 
-- The full authenticated frontend-to-backend-to-database runtime workflow requires further acceptance.
-- Live request deadlines and HTTP 504 mapping require end-to-end verification.
-- SSE streaming and disconnect handling require live runtime validation.
-- Database persistence, recovery, and restoration require integrated checks.
-- AI-generated explanations must be evaluated for grounding and website scope.
-- Supported issue rechecks do not imply universal coverage of SEO issues.
-- No production readiness, customer adoption, or guaranteed SEO outcome is claimed.
+| Capability | Acceptance needed |
+|---|---|
+| Authenticated workspace | End-to-end session and account ownership checks |
+| Website inspection | Safe resource limits and supported observation coverage |
+| API reliability | Live deadline and HTTP 504 behavior |
+| SSE | Completion, disconnect and error cleanup |
+| Persistence | Recovery, transaction consistency and workspace restoration |
+| AI and retrieval | Website scope, evidence grounding and provider failure handling |
+| Verification | Supported issue coverage and uncertain outcomes |
+| Production readiness | Dependency reproducibility, migrations, security and operational readiness |
 
-## Roadmap direction
+## Release decision
 
-1. Complete safe local runtime acceptance of the existing integrated architecture.
-2. Validate evidence-grounded answers, adaptive presentation, and contextual follow-through.
-3. Confirm persistence, recovery, and issue verification across supported workflows.
-4. Improve coverage and reliability based on measured behavior.
-5. Prepare operational, security, and usability readiness before any public release.
+```mermaid
+flowchart LR
+ A[Source changes] --> B[Offline checks]
+ B --> C[Integrated local acceptance]
+ C --> D[Security and operational acceptance]
+ D --> E[Release decision]
+```
 
-The roadmap describes goals, not promised delivery dates.
+Recorded checks establish progress at specific stages, not completion of every gate. The project remains in active development. The private implementation and credentials are not published.
 
-## Portfolio boundaries
-
-The original COPLIT source repository remains private. This repository is documentation-only and does not contain implementation code, environment files, credentials, customer data, or production infrastructure configuration.
+[Engineering investigations](ENGINEERING-CASE-STUDIES.md) · [Architecture](ARCHITECTURE.md)
