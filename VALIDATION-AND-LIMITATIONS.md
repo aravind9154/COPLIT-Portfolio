@@ -36,7 +36,6 @@ The results are development-record summaries of local execution, simulated behav
 | Security and scalability | Design requirements are documented; comprehensive security testing and production benchmarks are not established. |
 | Verification coverage | The recorded local example covers missing H1 and missing meta description; it does not establish universal coverage. |
 
-[Engineering investigations](ENGINEERING-CASE-STUDIES.md) · [Architecture](ARCHITECTURE.md)
 
 ---
-[Portfolio home](README.md) · [Product](PRODUCT-CASE-STUDY.md) · [Architecture](ARCHITECTURE.md) · [AI](AI-INTELLIGENCE.md) · [Engineering](ENGINEERING-CASE-STUDIES.md) · [Validation](VALIDATION-AND-LIMITATIONS.md) · [LinkedIn](https://www.linkedin.com/in/aravindmugappagari)
+**Continue:** [Independent research](https://github.com/aravind9154/100hires-growth-marketing-task) · [Portfolio home](README.md) · [Professional profile](https://github.com/aravind9154)
