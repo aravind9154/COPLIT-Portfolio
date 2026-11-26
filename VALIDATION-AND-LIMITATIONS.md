@@ -39,3 +39,6 @@ The results are development-record summaries of local execution, simulated behav
 
 ---
 **Continue:** [Independent research](https://github.com/aravind9154/100hires-growth-marketing-task) · [Portfolio home](README.md) · [Professional profile](https://github.com/aravind9154)
+
+---
+**Continue:** [Independent research](https://github.com/aravind9154/100hires-growth-marketing-task) · [Portfolio home](README.md) · [Professional profile](https://github.com/aravind9154)
