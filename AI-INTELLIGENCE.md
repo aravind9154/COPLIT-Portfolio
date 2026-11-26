@@ -75,7 +75,6 @@ The design prioritizes answer reliability over unrestricted conversational outpu
 
 The recorded conversational understanding component checks evaluated interpretation of user questions and all passed. The checks concern question interpretation, rather than model accuracy. [See the validation scope](VALIDATION-AND-LIMITATIONS.md).
 
-[Architecture](ARCHITECTURE.md) · [Validation](VALIDATION-AND-LIMITATIONS.md)
 
 ---
-[Portfolio home](README.md) · [Product](PRODUCT-CASE-STUDY.md) · [Architecture](ARCHITECTURE.md) · [AI](AI-INTELLIGENCE.md) · [Engineering](ENGINEERING-CASE-STUDIES.md) · [Validation](VALIDATION-AND-LIMITATIONS.md) · [LinkedIn](https://www.linkedin.com/in/aravindmugappagari)
+**Next:** [Engineering investigations](ENGINEERING-CASE-STUDIES.md) · [Portfolio home](README.md) · [Professional profile](https://github.com/aravind9154)
