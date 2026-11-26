@@ -82,7 +82,6 @@ The following is a diagnostic playbook, not a record of additional incidents.
 | Verification fetch fails | Network response and evidence sufficiency | Report inability to verify, not a successful fix |
 | AI response lacks evidence | Retrieval scope and context | Acknowledge missing evidence |
 
-[Architecture](ARCHITECTURE.md) · [Validation](VALIDATION-AND-LIMITATIONS.md)
 
 ---
-[Portfolio home](README.md) · [Product](PRODUCT-CASE-STUDY.md) · [Architecture](ARCHITECTURE.md) · [AI](AI-INTELLIGENCE.md) · [Engineering](ENGINEERING-CASE-STUDIES.md) · [Validation](VALIDATION-AND-LIMITATIONS.md) · [LinkedIn](https://www.linkedin.com/in/aravindmugappagari)
+**Next:** [Validation & reliability](VALIDATION-AND-LIMITATIONS.md) · [Portfolio home](README.md) · [Professional profile](https://github.com/aravind9154)
