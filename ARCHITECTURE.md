@@ -24,6 +24,53 @@ flowchart TD
 
 The frontend owns interaction state; application services coordinate requests and inspection; the crawler collects observations; analysis converts supported observations into findings; PostgreSQL retains relationships and history. Retrieval supplies relevant context to the explanation layer, while verification reinspects the relevant condition. A finding, an explanation and a verification event are separate records or responsibilities: a generated explanation is not evidence that a correction succeeded.
 
+## From a website URL to a report
+
+1. The frontend collects the URL and sends a request to the backend.
+2. The design requires the backend to check identity and URL safety before starting website inspection.
+3. The crawler discovers links, fetches pages and collects HTML and response information. Beautiful Soup helps inspect HTML; Playwright can inspect content after JavaScript runs.
+4. SEO checks examine the observations and create findings linked to affected pages.
+5. The application organizes findings and saves evidence in PostgreSQL.
+6. The frontend requests progress and displays results. AI can help explain the saved evidence, and supported checks can run again after a fix.
+
+The documented frontend uses GET /audit-progress/{progressId} for polling and POST /audits/{id}/initial-task-response for an initial task explanation. These are recorded source interfaces, not newly tested requests.
+
+## Website inspection and intelligence
+
+The crawler discovers pages and links, normalizes URLs, fetches content and parses technical signals. Browser rendering complements HTTP inspection when JavaScript changes the visible document. Analysis components turn observations into findings, evidence and prioritized work. Conversational components support contextual interaction.
+
+## How website information is stored
+
+```mermaid
+erDiagram
+ ACCOUNT ||--o{ WEBSITE : owns
+ WEBSITE ||--o{ AUDIT : has
+ AUDIT ||--o{ PAGE : observes
+ AUDIT ||--o{ FINDING : identifies
+ FINDING ||--o{ FINDING_PAGE : affects
+ PAGE ||--o{ FINDING_PAGE : associated
+ FINDING ||--o{ EVIDENCE : supported_by
+ FINDING ||--o{ VERIFICATION_EVENT : rechecked_by
+```
+
+Conceptual relationships, not an exact schema export. Links, intelligence snapshots and conversation records also support inspection and continuity. Transactions should preserve consistent finding and verification state.
+
+## How the frontend asks for saved results
+
+```mermaid
+sequenceDiagram
+ participant UI as Frontend
+ participant API as FastAPI
+ participant DB as PostgreSQL
+ UI->>API: GET /audits/{id}
+ API->>API: Check identity and resource ownership
+ API->>DB: Retrieve authorized audit
+ DB-->>API: Stored audit state
+ API-->>UI: JSON response or appropriate error
+```
+
+The endpoint is documented in the frontend records. The ownership check represents the intended security contract, not a completed cross-account acceptance test.
+
 ## What each technology does
 
 | Technology | What it is and why it fits COPLIT |
@@ -50,59 +97,17 @@ The frontend owns interaction state; application services coordinate requests an
 | Python-dotenv | Loads environment-based configuration in development; not a secret vault |
 | SSE | Server-sent events for progressive responses; live lifecycle acceptance pending |
 
-## How the frontend asks for saved results
+## Architectural judgment
 
-```mermaid
-sequenceDiagram
- participant UI as Frontend
- participant API as FastAPI
- participant DB as PostgreSQL
- UI->>API: GET /audits/{id}
- API->>API: Check identity and resource ownership
- API->>DB: Retrieve authorized audit
- DB-->>API: Stored audit state
- API-->>UI: JSON response or appropriate error
-```
+| Design decision | Alternative | Benefit | Cost or constraint |
+|---|---|---|---|
+| Next.js / React and FastAPI | Vue, Angular, Flask, Django or Express | Clear interface between interaction and inspection logic | Requires compatible API contracts and coordinated error handling |
+| PostgreSQL relational storage | Document database | Trace findings to pages, audits and verification events | Requires schema management and transaction discipline |
+| Combine HTTP and browser inspection | HTTP only | Observe both response markup and rendered content | Browser execution consumes additional time and resources |
+| Separate explanation from verification | Model-only judgment | Prevent generated text from becoming proof of a correction | Requires dedicated checks for supported issue types |
+| Bound request and database waiting | API-only timeout | Avoid indefinite waiting and communicate failures | Time budgets must propagate across service boundaries |
 
-The endpoint is documented in the frontend records. The ownership check represents the intended security contract, not a completed cross-account acceptance test.
-
-## How website information is stored
-
-```mermaid
-erDiagram
- ACCOUNT ||--o{ WEBSITE : owns
- WEBSITE ||--o{ AUDIT : has
- AUDIT ||--o{ PAGE : observes
- AUDIT ||--o{ FINDING : identifies
- FINDING ||--o{ FINDING_PAGE : affects
- PAGE ||--o{ FINDING_PAGE : associated
- FINDING ||--o{ EVIDENCE : supported_by
- FINDING ||--o{ VERIFICATION_EVENT : rechecked_by
-```
-
-Conceptual relationships, not an exact schema export. Links, intelligence snapshots and conversation records also support inspection and continuity. Transactions should preserve consistent finding and verification state.
-
-## From a website URL to a report
-
-1. The frontend collects the URL and sends a request to the backend.
-2. The design requires the backend to check identity and URL safety before starting website inspection.
-3. The crawler discovers links, fetches pages and collects HTML and response information. Beautiful Soup helps inspect HTML; Playwright can inspect content after JavaScript runs.
-4. SEO checks examine the observations and create findings linked to affected pages.
-5. The application organizes findings and saves evidence in PostgreSQL.
-6. The frontend requests progress and displays results. AI can help explain the saved evidence, and supported checks can run again after a fix.
-
-The documented frontend uses GET /audit-progress/{progressId} for polling and POST /audits/{id}/initial-task-response for an initial task explanation. These are recorded source interfaces, not newly tested requests.
-
-## Troubleshooting system boundaries
-
-| Observation | Boundary to investigate |
-|---|---|
-| Browser request fails | Frontend network request, API route and HTTP response |
-| Audit stops progressing | Progress endpoint, backend job state and stored audit records |
-| Request exceeds its time budget | Service deadline, database connection and transaction limits |
-| Explanation lacks website evidence | Authorized retrieval scope and context preparation |
-
-This is a diagnostic guide, not a record of additional incidents. See the [engineering investigations](ENGINEERING-CASE-STUDIES.md) for recorded work.
+My architectural work centers on defining these responsibilities and tracing how requests, data and errors cross them. The trade-offs explain the design rationale; they do not imply that every alternative was benchmarked.
 
 ## How the smaller parts fit together
 
@@ -126,21 +131,16 @@ This is a diagnostic guide, not a record of additional incidents. See the [engin
 
 These explain the design and historical source findings. Full current dependency usage and security behavior still need verification.
 
-## Website inspection and intelligence
+## Troubleshooting system boundaries
 
-The crawler discovers pages and links, normalizes URLs, fetches content and parses technical signals. Browser rendering complements HTTP inspection when JavaScript changes the visible document. Analysis components turn observations into findings, evidence and prioritized work. Conversational components support contextual interaction.
+| Observation | Boundary to investigate |
+|---|---|
+| Browser request fails | Frontend network request, API route and HTTP response |
+| Audit stops progressing | Progress endpoint, backend job state and stored audit records |
+| Request exceeds its time budget | Service deadline, database connection and transaction limits |
+| Explanation lacks website evidence | Authorized retrieval scope and context preparation |
 
-## Architectural judgment
-
-| Design decision | Alternative | Benefit | Cost or constraint |
-|---|---|---|---|
-| Next.js / React and FastAPI | Vue, Angular, Flask, Django or Express | Clear interface between interaction and inspection logic | Requires compatible API contracts and coordinated error handling |
-| PostgreSQL relational storage | Document database | Trace findings to pages, audits and verification events | Requires schema management and transaction discipline |
-| Combine HTTP and browser inspection | HTTP only | Observe both response markup and rendered content | Browser execution consumes additional time and resources |
-| Separate explanation from verification | Model-only judgment | Prevent generated text from becoming proof of a correction | Requires dedicated checks for supported issue types |
-| Bound request and database waiting | API-only timeout | Avoid indefinite waiting and communicate failures | Time budgets must propagate across service boundaries |
-
-My architectural work centers on defining these responsibilities and tracing how requests, data and errors cross them. The trade-offs explain the design rationale; they do not imply that every alternative was benchmarked.
+This is a diagnostic guide, not a record of additional incidents. See the [engineering investigations](ENGINEERING-CASE-STUDIES.md) for recorded work.
 
 ## Protecting accounts and keeping the application running
 
@@ -148,7 +148,6 @@ Account authentication, session handling and resource ownership define the inten
 
 Local development uses Windows, PowerShell, a Python virtual environment and Node tooling. CORS, environment configuration, dependency reproducibility, migrations, health checks, timeouts and recovery are operational concerns. Production hosting, orchestration and scalability are not claimed.
 
-[AI and retrieval](AI-INTELLIGENCE.md) · [Engineering investigations](ENGINEERING-CASE-STUDIES.md) · [Validation](VALIDATION-AND-LIMITATIONS.md)
 
 ---
-[Portfolio home](README.md) · [Product](PRODUCT-CASE-STUDY.md) · [Architecture](ARCHITECTURE.md) · [AI](AI-INTELLIGENCE.md) · [Engineering](ENGINEERING-CASE-STUDIES.md) · [Validation](VALIDATION-AND-LIMITATIONS.md) · [LinkedIn](https://www.linkedin.com/in/aravindmugappagari)
+**Next:** [AI intelligence](AI-INTELLIGENCE.md) · [Portfolio home](README.md) · [Professional profile](https://github.com/aravind9154)
