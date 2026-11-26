@@ -52,4 +52,4 @@ I define product requirements and system responsibilities, coordinate AI-assiste
 The portfolio documents product decisions, architecture and recorded engineering work. Application source is private. Detailed implementation and validation boundaries are described in the linked documents.
 
 ---
-[Portfolio home](README.md) · [Product](PRODUCT-CASE-STUDY.md) · [Architecture](ARCHITECTURE.md) · [AI](AI-INTELLIGENCE.md) · [Engineering](ENGINEERING-CASE-STUDIES.md) · [Validation](VALIDATION-AND-LIMITATIONS.md) · [LinkedIn](https://www.linkedin.com/in/aravindmugappagari)
+**Next:** [Product research & design](PRODUCT-CASE-STUDY.md) · [Portfolio home](README.md) · [Professional profile](https://github.com/aravind9154)
