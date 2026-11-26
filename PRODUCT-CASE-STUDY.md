@@ -39,16 +39,9 @@ Original research notes and customer interviews are not included in this portfol
 
 ## Business value and product direction
 
-The product focuses on the effort between identifying an issue and resolving it. For a website owner, that means less interpretation work; for a freelancer, clearer explanations to clients; for an agency, a more consistent way to track corrections across engagements. These are intended benefits, not measured savings.
+For website owners, the intended benefit is less interpretation work. Freelancers need clear explanations they can share with clients, while agencies need a consistent record of corrections across engagements. These are intended benefits, not measured savings.
 
-| Product priority | Reasoning | Trade-off |
-|---|---|---|
-| Reliable inspection and evidence | Explanations need trustworthy inputs | Coverage is bounded by supported checks and crawl limits |
-| Grouping and prioritization | Users need a manageable starting point | Grouping must retain page-level detail |
-| Guided resolution and verification | A recommendation is more useful when its outcome can be checked | Verification requires issue-specific logic |
-| History and contextual assistance | Returning users need continuity | Stored context adds privacy and consistency requirements |
-
-The strategic focus is depth of problem resolution rather than matching every feature of a general-purpose SEO suite. This is a product rationale, not a claim of market validation.
+The strategic choice is depth of resolution over feature breadth. Reliable inspection comes first because guidance depends on trustworthy observations. Grouping and prioritization make those observations manageable, while issue-specific verification and history support continued work. This creates trade-offs in crawl coverage, verification coverage and state management.
 
 ## How findings become decisions
 
@@ -90,7 +83,6 @@ A website owner needs to know which pages lack a main heading, why the heading m
 
 These are evaluation definitions, not collected customer metrics.
 
-[How the software works](ARCHITECTURE.md) · [What I have tested](VALIDATION-AND-LIMITATIONS.md)
 
 ---
-[Portfolio home](README.md) · [Product](PRODUCT-CASE-STUDY.md) · [Architecture](ARCHITECTURE.md) · [AI](AI-INTELLIGENCE.md) · [Engineering](ENGINEERING-CASE-STUDIES.md) · [Validation](VALIDATION-AND-LIMITATIONS.md) · [LinkedIn](https://www.linkedin.com/in/aravindmugappagari)
+**Next:** [System architecture](ARCHITECTURE.md) · [Portfolio home](README.md) · [Professional profile](https://github.com/aravind9154)
