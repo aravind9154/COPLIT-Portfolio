@@ -8,7 +8,23 @@ AI-powered SEO intelligence
 
 </div>
 
-COPLIT brings technical website inspection and guided problem resolution into one workspace. Its central design decision is to keep observed website evidence separate from AI-generated explanations and to check corrections independently.
+COPLIT is my software product project connecting website diagnostics with guided corrections and independent verification. In recorded local audit #58, corrections to missing H1 headings and meta descriptions were rechecked, both findings were marked fixed, and the workflow advanced to the next finding.
+
+My contribution spans product requirements, system responsibilities, AI-assisted implementation coordination, technical investigation and validation review.
+
+## Review the work for your role
+
+| Reading path | Evidence to inspect |
+|---|---|
+| [Associate Product Manager](roles/associate-product-manager.md) | Problem framing, requirements, priorities and product judgment |
+| [Technical Product Analyst / Business Analyst](roles/technical-product-analyst.md) | Requirements, state analysis, evidence interpretation and clear specifications |
+| [Product Support / Technical Support](roles/product-support.md) | Reproduce a symptom, inspect evidence, explain next steps and escalate clearly |
+| [Product Operations Associate](roles/product-operations.md) | Workflow clarity, state continuity, operational definitions and handoffs |
+| [Junior Software / Graduate Engineer](roles/junior-software-engineer.md) | Executable code, boundary reasoning, tests and technical explanation |
+| [Applied AI Applications — conditional target](roles/applied-ai.md) | Grounding design, retrieval boundaries and evaluation discipline |
+
+These are perspectives on the same project, not claims of previous employment in each role. [Evidence index](EVIDENCE-INDEX.md) distinguishes recorded local execution, simulated checks, design decisions and new review-time tests.
+
 
 ## Product experience
 
